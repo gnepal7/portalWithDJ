@@ -1,0 +1,106 @@
+@media only all and (min-width: 768px){
+	.team_table{
+		& .table{
+			width:100%;
+			& thead{
+				background-color:lighten($main, 70%);
+			}
+			& th{
+				font-weight: 600;
+				text-align:left;
+			}
+			& th,
+			& td{
+				padding:1rem;
+			}
+		}
+	}
+}
+.team_table{
+	& .table{
+		border-collapse: collapse;
+		& tbody{
+			& tr{
+				transition:all linear .3s;
+				&:nth-child(odd){
+					background-color:rgba($dgray, .13);
+				}
+				&:nth-child(even){
+					background-color:rgba($dgray, .06);
+				}
+				&:hover{					
+					background-color:rgba($main, .2);
+					cursor: pointer;
+				}
+			}
+		}
+		
+		& th,
+		& td{
+			vertical-align: middle;			
+		}
+		& td{
+			font-size:1rem;
+			&[data-title="Name"]{
+				font-size:1.1rem;
+				font-weight: 600;
+			}
+			& img{
+				width:5rem;
+				height:5rem;
+				object-fit: cover;
+				@include radius(50%);
+			}
+			& .cf{
+				font-size:1.2rem;
+				color:lighten($dgray, 50%);
+				&:not(:first-of-type){
+					margin-left:.5rem;
+				}
+			}
+		}
+	}
+
+}
+
+
+@media only all and (max-width: 767px) {
+    .team_table table, 
+	.team_table thead, 
+	.team_table tbody, 
+	.team_table th, 
+	.team_table td, 
+	.team_table tr { 
+		display: block; 
+	}
+ 	.team_table thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	} 
+	.team_table td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 40%; 
+		white-space: normal;
+		text-align:left;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		padding-right: 0.5rem;
+		word-wrap: break-word;
+    	word-break: break-word;
+	}
+ 
+	.team_table td:before { 
+		position: absolute;
+		top: calc( 50% - 12px );
+		left: .5rem;
+		width: 35%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	} 
+	.team_table td:before { content: attr(data-title); }
+}

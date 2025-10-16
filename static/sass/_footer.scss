@@ -1,0 +1,29 @@
+.footer{
+	background-color: rgba($gray, .2);
+	font-size:1rem;
+	& .logo{
+		width:90%;
+	}
+	&_ul{
+
+	}
+	&_li{
+
+	}
+	&_a{
+		font-size:1rem;
+		& .cf{
+			font-size:1.5rem;
+		}
+		&:hover .cf{
+			color:$ass;
+			transition:all linear .3s;
+		}
+	}
+}
+.copyright{
+	border-top:1px solid lighten($dgray, 60%);
+	@include min(768px){
+		text-align:center;
+	}
+}

@@ -1,0 +1,273 @@
+@for $list from 1 through length(6){
+	h#{$list}, .h#{$list}{
+		font-family: $font-title;
+        line-height: 1.4;
+        font-weight: 600;
+	}	
+}
+@for $i from 1 through 3 {
+    .gap-#{$i} {
+        grid-gap: #{$i * .6rem};
+        @include max(767px){
+        	grid-gap: #{$i * .4rem};
+        }
+    }
+}
+@for $r from 1 through 3 {
+	$rad: ("br":"", "brtl": "top-left", "brtr": "top-right", "brbr": "bottom-right", "brbl":"bottom-left");
+    @each $name, $radside in $rad {
+    	@if ($name == 'br'){
+    		.#{$name}-#{$r} {
+    			-webkit-border-radius: #{$r * .375rem};
+    			-moz-border-radius: #{$r * .375rem};	    
+    		   border-radius:#{$r * .375rem};
+    		   @include max(767px){
+    		   	-webkit-border-radius: #{$r * .25rem};
+    		   	-moz-border-radius: #{$r * .25rem};
+    		   	border-radius:#{$r * .25rem};
+    		   }
+    		}
+    	}		
+    	@else{
+    		.#{$name}-#{$r} {
+				-webkit-border-#{$radside}-radius: #{$r * .375rem};
+				-moz-border-#{$radside}-radius: #{$r * .375rem};	    
+			   border-#{$radside}-radius:#{$r * .375rem};        		   
+    		   @include max(767px){
+    		   	-webkit-border-#{$radside}-radius: #{$r * .25rem};
+				-moz-border-#{$radside}-radius: #{$r * .25rem};	    
+			  	 border-#{$radside}-radius:#{$r * .25rem}; 
+    		   }
+    		}
+    	}			  
+    }
+
+}
+@for $p from 1 through 12 {
+    .col_#{$p} {
+        grid-column: span #{$p * 1};
+        @include max(767px){
+        	grid-column: span 12;
+        }
+    }
+}
+@for $i from 1 through 5 {	
+	$dir: ("n":"", "x":"", "y":"", "t": "top", "r": "right", "b": "bottom", "l":"left");
+	@each $pd, $pdside in $dir {
+		@if ($pd == n){
+			.p-#{$i} {	    
+			   padding:#{$i * .5rem};
+			   @include max(767px){
+			   	padding:#{$i * .4rem};
+			   }
+			}
+		}
+		@else if ($pd == x){
+			.px-#{$i} {	    
+			   padding-left: #{$i * .5rem};
+			   padding-right: #{$i * .5rem};
+			   @include max(767px){
+			   	padding-left: #{$i * .4rem};
+			   	padding-right: #{$i * .4rem};
+			   }
+			}
+		}
+		@else if ($pd == y){
+			.py-#{$i} {	    
+			   padding-top:#{$i * .5rem};
+			   padding-bottom:#{$i * .5rem};
+			   @include max(767px){
+			   	padding-top:#{$i * .4rem};
+			   	padding-bottom:#{$i * .4rem};
+			   }
+			}
+		}
+		@else{
+			.p#{$pd}-#{$i} {	    
+			   padding-#{$pdside}:#{$i * .5rem};
+			   @include max(767px){
+			   	padding-#{$pdside}:#{$i * .4rem};
+			   }
+			}
+		}			  
+	}
+	@each $mr, $mrside in $dir {
+		@if ($mr == n){
+			.m-#{$i} {	    
+			   margin:#{$i * .5rem};
+			   @include max(767px){
+			   	margin:#{$i * .4rem};
+			   }
+			}
+		}
+		@else if ($mr == x){
+			.mx-#{$i} {	    
+			   margin-left: #{$i * .5rem};
+			   margin-right: #{$i * .5rem};
+			   @include max(767px){
+			   	margin-left: #{$i * .4rem};
+			   	margin-right: #{$i * .4rem};
+			   }
+			}
+		}
+		@else if ($mr == y){
+			.my-#{$i} {	    
+			   margin-top:#{$i * .5rem};
+			   margin-bottom:#{$i * .5rem};
+			   @include max(767px){
+			   	margin-top:#{$i * .4rem};
+			   	margin-bottom:#{$i * .4rem};
+			   }
+			}
+		}
+		@else{
+			.m#{$mr}-#{$i} {	    
+			   margin-#{$mrside}:#{$i * .5rem};
+			   @include max(767px){
+			   	margin-#{$mrside}:#{$i * .4rem};
+			   }
+			}
+		}			  
+	}
+}
+$ft-sz: 3rem, 1.75rem, 1.5rem, 1.35rem, 1.125rem, 1rem, .875rem ;
+$ft-sz-sm: 1.9rem, 1.5rem, 1.25rem, 1.15rem, 1.1rem, 1rem, .875rem ;
+$lists: 'h1', 'h2', 'h3', 'h4' 'h5','h6', 'h7';
+@for $list from 1 through length($ft-sz){
+	h#{$list}, .h#{$list}{
+		font-size: nth($ft-sz, $list);
+		@include max(767px){
+			font-size: nth($ft-sz-sm, $list);
+		}
+	}
+	//@debug ".h#{$list}: #{$ft-sz-sm}";
+}
+@for $list from 1 through length(6){
+	h#{$list}, .h#{$list}{
+		font-family: $font-title;
+        line-height: 1.5;
+        font-weight: 600;
+	}	
+}
+$img-size:(
+	size-1:(dkt:21.875rem, mob:20rem),
+	size-2:(dkt:20rem, mob:auto),
+	size-3:(dkt:16.25rem, mob:auto),
+	size-4:(dkt:12.5rem, mob:auto),
+	size-5:(dkt:9.125rem, mob:7.5rem),
+	size-6:(dkt:8.75rem, mob:6.25rem),
+
+);
+@each $name, $value in $img-size{
+	.#{$name}{
+		height:map-get($value, dkt);		
+		@include max(767px){
+			height:map-get($value, mob);
+		}
+	}	
+}
+$classes:(
+	gr:$gray,
+	blc:$dgray,
+	wh:$white,
+	blu:$main
+);
+@each $co, $value in $classes{
+	.#{$co}{
+		color:$value;		
+	}
+}
+$bg-classes:(
+	gray-bg:rgba($dgray, .1),
+	blue-bg:lighten($main, 40%),
+	light-bg:$light,
+	dark-bg:rgba($dgray, .7),
+	wh-bg:$white,
+	bg-trs:transparent,
+	bl-ful:$main
+);
+@each $bg, $value in $bg-classes{
+	.#{$bg}{
+		background-color: $value;
+	}
+}
+$displays:(
+	df:flex,
+	db:block,
+	dg:grid,
+	di:inline-block,
+	dt:table,
+	dif:inline-flex
+);
+@each $dis, $value in $displays{
+	.#{$dis}{
+		display: $value;
+	}
+}
+.wrapper{
+	max-width: 80rem;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:1rem;
+	padding-right:1rem;	
+}
+%btn{
+	display: inline-block;
+	color:$gray;	
+}
+%btn{
+	display: inline-block;
+	color:$gray;	
+}
+.btn-main{
+	@extend %btn;
+	background-color: $main;
+}
+.btn-ass{
+	@extend %btn;
+	background-color: $ass;
+}
+.dfc{
+	display: flex;	
+	flex-direction:column;
+}
+.dg{	
+	grid-template-columns: repeat(12,1fr);
+	#first &{
+		color:$ass;
+	}
+}
+.hide_on_mobile{
+	@include max(991px){
+		display: none;
+	}
+}
+.hide_on_desktop{
+	@include min(992px){
+		display: none;
+	}
+}
+blockquote{
+	@include pad(.5rem .7rem);
+	background-color: rgba($main, .15);
+}
+img{	
+	vertical-align: middle;
+	max-width: 100%;
+}
+.img-outer{
+	overflow: hidden;
+	position: relative;
+	& img{
+		height:100%;
+		object-fit:cover;
+		@include transition(.3s ease-in-out all);
+		width: 100%;	
+	}
+	&:hover{
+		& img{
+			transform:scale(1.01);
+			@include transition(.3s ease-in-out all);
+		}
+	}
+}

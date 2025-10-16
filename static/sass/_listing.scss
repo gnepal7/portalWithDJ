@@ -1,0 +1,43 @@
+.listing{
+	& .banner{
+		align-items: center;
+		text-align:center;
+		@include bannerBef;
+		& p{
+			font-size:1.3rem;
+		}
+	}
+	& .small{
+		& .item{
+			@include min(768px){
+				grid-column:span 4;
+			}
+			@include max(767px){
+				grid-column:span 12;
+			}
+		}
+		& .title{
+			font-weight: 600;
+		}
+	}
+}
+.paginate{
+	@include max(767px){
+		margin-top:1rem;
+		white-space: nowrap;
+		overflow-x:auto;
+		overflow-y:hidden;
+		padding-bottom: 1rem;
+	}
+}
+.page-numbers{
+	padding:.5rem .63rem .3rem;
+	@include radius(.2rem);
+	background-color: rgba($dgray, .2);
+	line-height: 1;
+	&.current,
+	&:hover{
+		background-color: $ass;
+		color:$gray;
+	}
+}

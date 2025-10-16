@@ -1,0 +1,569 @@
+/***** banner section *****/
+figure{
+	&>*{
+		align-items: center;
+	}
+}
+@mixin bannerBef{
+	position: relative;
+	&:before{
+		content:"";
+		height: 1px;
+		width:calc( 100% - 2rem );
+		@include absPos(auto, auto, 0, auto);
+		background-color:lighten($gray, 15%);
+	}
+}
+.cf{
+	color:$gray;
+	line-height: 10px;
+	&.homeicon{
+		color:$white;
+	}
+	&.toggler,
+	&.footicon{
+		color:lighten($dgray, 40%);
+	}
+}
+.author{
+	&_img{
+		height:2.5rem;
+		width:2.5rem;
+		object-fit: cover;
+		@include radius(50%);
+	}
+}
+.banner{
+	align-items: center;
+	text-align: center;
+	@include bannerBef;
+	& .img-outer{
+		& img{
+			@include radius(.75rem);
+		}
+	}
+}
+.title{
+	line-height: 1.5;
+}
+.writer{
+	align-items: center;
+	& img{
+		@include radius(50%);
+		width:2.5rem;
+		height: 2.5rem;
+		object-fit: cover;
+	}
+}
+/***** main news *****/
+.main{
+	&_item{
+		grid-column:span 12;
+		& .title{
+			font-size:1.7rem;
+		}
+	}
+	& .ad-wrap{
+		grid-column:span 12;
+	}
+}
+/***** block title *****/
+.block{
+	&_title{
+		position:relative;
+		z-index:1;
+		margin-bottom: 0.5rem;
+		&:before{
+			content:"";
+			height: 1px;
+			width:100%;
+			@include absPos(auto, auto, 0, auto);
+			background-color:lighten($gray, 10%);
+			top: calc( 50% - 2px );
+			z-index: -1;
+		}
+		& span{
+			text-shadow: 1px 1px 1px;
+			@include min(768px){
+				font-size:1.7rem;
+			}
+
+		}
+		&.center{
+			& span{
+				@include min(768px){
+					padding-left: 1rem;
+					margin:0 auto;
+				}
+			}
+		}
+	}
+	&_link{
+		font-size: 1rem;
+		z-index:1;
+		@include absPos(auto, 0, 0, auto);
+		align-items: center;
+		@include min(768px){
+			top: calc( 50% - 2rem );
+		}
+		@include max(767px){
+			top: calc( 50% - 1.6rem );
+		}
+	}
+}
+/***** right items/recent,edu, samsad, patrika *****/
+.right{
+	& .item{
+		flex-direction: column;
+		&:not(:last-of-type){
+			border-bottom:1px solid lighten($gray, 25%);
+			margin-bottom:1rem;
+			@include min(768px){
+				padding-bottom:1rem;
+			}
+			@include max(767px){
+				padding-bottom:.8rem;
+				margin-bottom:.8rem;
+			}
+		}
+		& .img-outer{
+			@include min(768px){
+				height:10rem;
+			}
+			object-fit: cover;
+		}
+		& .title{
+			flex:1;
+			@include lc(3);
+		}
+	}
+	&.patrika{
+		& .item{
+			&:not(:last-of-type){
+				border-bottom-color: lighten($dgray, 60%);
+			}
+		}
+	}
+}
+/***** left news style1 *****/
+@mixin titleMid{
+	@include lc(2);
+	font-size:1.65rem;
+	@include min(768px){
+		margin-top:.5rem;
+	}
+	@include max(767px){
+		margin-top:.4rem;
+	}
+}
+@mixin titleSmall{
+	flex:1;
+	@include lc(3);
+	font-size:1.25rem;
+}
+@mixin smItem{
+	display:flex;
+	grid-gap:.6rem;
+	& .img-outer{
+		width:7.5rem;
+		aspect-ratio:1/.9;
+	}
+	& .title{
+		@include titleSmall;
+	}
+}
+@mixin col6Item{
+	display: flex;
+	flex-direction: column;
+	@include min(768px){
+		grid-column:span 6;
+	}
+	& .img-outer{
+		@include min(768px){
+			height:14rem;
+		}
+	}
+	& .title{
+		@include titleSmall;
+		@include min(768px){
+			margin-top:.5rem;
+		}
+		@include max(767px){
+			margin-top:.4rem;
+		}
+	}
+}
+@mixin bgOverlay{
+	position:relative;
+	z-index: 1;
+	width:100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	@include imgPos;
+}
+.left,
+.left2,
+.artha{
+	& .item{
+		grid-column:span 6;
+		&:nth-child(1),
+		&:nth-child(2){
+			& .img-outer{
+				width:100%;
+				@include min(768px){
+					height:20rem;
+				}
+				@include max(767px){
+					height:auto;
+				}
+			}
+		}
+	}
+	& .title{
+		font-weight: 600;
+	}
+}
+.left,
+.left2,
+.left3,
+.artha{
+	& .item{
+		@include max(767px){
+			grid-column:span 12;
+		}
+	}
+}
+.left{
+	& .item{
+		&:nth-child(1),
+		&:nth-child(2){
+			// grid-row: span 4;
+			& .title{
+				@include titleMid;
+			}
+		}
+		&:nth-child(n+3){
+			@include smItem;
+		}
+	}
+}
+.left,
+.left3{
+	& .item{
+		@include min(768px){
+			grid-column:span 6;
+		}
+	}
+}
+/***** left news style2 and style3 *****/
+.left2{
+	& .item{
+		&:first-of-type{
+			@include min(768px){
+				grid-column:span 12;
+			}
+			& .img-outer{
+				@include min(768px){
+					height:20rem;
+				}
+			}
+			& .title{
+				@include titleMid;
+			}
+		}
+		&:not(:first-of-type){
+			@include col6Item;
+			display: flex;
+		}
+		& .img-outer{
+			width:100%;
+			@include max(767px){
+				height:auto;
+			}
+		}
+
+	}
+}
+.left2,
+.left3{
+	& .item{
+		&:nth-child(1),
+		&:nth-child(2){
+			& .img-outer{
+				@include min(768px){
+					height:20rem;
+				}
+			}
+			& .title{
+				@include titleMid;
+			}
+		}
+	}
+}
+.left3{
+	& .item{
+		&:nth-child(n+3){
+			@include smItem;
+		}
+	}
+}
+/***** rajneet *****/
+.full{
+	& .item{
+		display: flex;
+		&:first-of-type{
+			grid-column:span 12;
+			flex-direction: column;
+			& .img-outer{
+				height:auto;
+			}
+			& .title{
+				@include titleMid;
+			}
+		}
+		&:not(:first-of-type){
+			grid-column:span 6;
+			@include smItem;
+		}
+	}
+}
+/***** artha *****/
+.artha{
+	& .item{
+		grid-column:span 6;
+		&:nth-child(1),
+		&:nth-child(2){
+			@include min(768px){
+				grid-row:span 4;
+
+			}
+			& .title{
+				@include titleMid;
+			}
+		}
+		&:nth-child(n+3){
+			// @include min(768px){
+			// 	grid-column:span 3;
+			// }
+			@include smItem;
+		}
+	}
+}
+/***** chintan *****/
+.item{
+	& .writer{
+		font-weight: 600;
+	}
+}
+.chintan{
+	& .img-outer{
+		@include min(768px){
+			height:20rem;
+		}
+	}
+	& .title{
+		@include titleMid;
+	}
+	& p{
+		@include lc(3);
+	}
+}
+/***** bichar *****/
+.bichar{
+	& .item{
+		grid-column: span 12;
+		grid-row: span 1;
+		&:first-of-type{
+			flex-direction: column;
+			& .img-outer{
+				@include min(768px){
+					height:13rem;
+				}
+				@include max(767px){
+					height:auto;
+				}
+			}
+			& .title{
+				@include titleMid;
+			}
+		}
+		&:not(:first-of-type){
+			border-top:1px solid $light;
+			@include min(768px){
+				margin-top:1rem;
+				padding-top:1rem;
+			}
+			@include max(767px){
+				margin-top:.8rem;
+				padding-top:.8rem;
+			}
+			& .img-outer{
+				height:4rem;
+				aspect-ratio:1/1;
+				@include radius(50%);
+			}
+			& .text-wrap{
+				flex:1;
+			}
+			& .title{
+				font-weight: 600;
+				font-size: 1.2rem;
+			}
+			& .writer{
+				font-size:.9rem;
+			}
+		}
+	}
+}
+/***** interview *****/
+.intv{
+	& .item{
+		grid-column:span 12;
+		&:first-of-type{
+			flex-direction: column;
+			& .img-outer{
+				// @include min(768px){
+				// 	height:20rem;
+				// }
+				@include max(767px){
+					height:auto;
+				}
+			}
+			& .title{
+				@include titleMid;
+			}
+			& .writer{
+				font-size:1.3rem;
+			}
+		}
+		&:not(:first-of-type){
+			@include max(767px){
+				flex-direction:column;
+			}
+			& .img-outer{
+				@include min(768px){
+					height:9rem;
+					aspect-ratio:1/.8;
+				}
+				@include max(767px){
+					height:auto;
+				}
+			}
+			& .title{
+				font-size:1.35rem;
+			}
+		}
+	}
+}
+/***** aajako tasbir *****/
+.today-pic{
+	& .item{
+		height:30rem;
+		@include bgOverlay;
+		@include max(767px){
+			height:22rem;
+		}
+		&:before{
+			@include overBg;
+			z-index:-1;
+		}
+		& .h1{
+			color:$white;
+		}
+	}
+}
+.owl-dots{
+	position: absolute;
+	left:0;
+	right:0;
+	text-align: center;
+	bottom: 0.24rem;
+	@include max(767px){
+		bottom:0;
+	}
+	& .owl-dot{
+		width:.725rem;
+		height:.725rem;
+		background-color: $gray !important;
+		@include radius(100%);
+		&:not(:last-of-type){
+			margin-right:.5rem;
+		}
+		&.active{
+			background-color: $ass !important;
+		}
+	}
+}
+/**** suchana *****/
+.suchana,
+.vivid{
+	& .item{
+		@include min(768px){
+			grid-column:span 4;
+		}
+		@include max(767px){
+			grid-column:span 12;
+		}
+		& .img-outer{
+			@include min(768px){
+				height:13rem;
+			}
+		}
+		& .title{
+			@include titleSmall;
+			margin-top:.3rem;
+		}
+	}
+}
+// /***** vivid *****/
+// .vivid{
+// 	& .item{
+// 		@include min(768px){
+// 			grid-column:span 4;
+// 		}
+// 		@include max(767px){
+// 			grid-column:span 12;
+// 		}
+// 	}
+// }
+/***** kala *****/
+.kala{
+	& .item{
+		grid-column:span 4;
+		height:27rem;
+		@include bgOverlay;
+		@include max(767px){
+			grid-column:span 12;
+		}
+		&:before{
+			@include overBg;
+			z-index:-1;
+			@include min(768px){
+				@include radius(.75rem);
+			}
+			@include max(767px){
+				@include radius(.5rem);
+			}
+		}
+	}
+}
+/***** onethird item krishi, paryaton, khelkud *****/
+.onethird{
+	& .item{
+		grid-column:span 12;
+		&:first-of-type{
+			& .img-outer{
+				@include min(768px){
+					height: 16.25rem;
+				}
+			}
+			& .title{
+				@include titleMid;
+			}
+		}
+		&:not(:first-of-type){
+			@include smItem;
+		}
+	}
+}
