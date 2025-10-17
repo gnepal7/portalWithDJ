@@ -6,18 +6,30 @@
 		<img src="{% static 'images/ad-header.gif' %}" alt="ad-header">
 	</a>
 
-	<div class="banner wrapper mt-5 dfc gap-3 pb-5">
-		<a class="h1" href="#">जसपा विभाजनप्रति असन्तुष्ट माधव नेपालले भनेः सरकारमा बस्ने कि नबस्ने निर्णय गर्ने बेला आयो</a>
-		<a class="writer df gap-1" href="#">
-			<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-			<span class="gr">समाचार पोर्टल</span>
-		</a>
-		<div class="img-outer br-2">
-			<img src="{% static 'images/ss.jpg' %}" alt="ss">
+	{% for flash in flashnews %}
+		<div class="banner wrapper mt-5 dfc gap-3 pb-5">
+			<a class="h1" href="{% url 'newsDetail' flash.id %}">{{ flash.news_title }}</a>
+			<a class="writer df gap-1" href="#">
+				{% if flash.news_authorImg %}
+					<img src="{{ flash.news_authorImg.url }}" alt="{{ flash.news_authorName }}">
+				{% else %}
+					<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Logo">
+				{% endif %}
+				<span class="gr">{{ flash.news_authorName }}</span>
+			</a>
+			<div class="img-outer br-2">
+				{% if flash.news_image %}
+					<img src="{{ flash.news_image.url }}" alt="{{ flash.news_title }}">
+				{% else %}
+					<img src="{% static 'images/ss.jpg' %}" alt="ss">
+				{% endif %}
+			</div>
 		</div>
-	</div>
+	{% empty %}
+		<p>No flash news available.</p>
+	{% endfor %}
 
-	<div class="banner wrapper mt-5 dfc gap-3 pb-5">
+	<!-- <div class="banner wrapper mt-5 dfc gap-3 pb-5">
 		<a class="h1" href="#">शिक्षक/कर्मचारी दलको सदस्य हुन नपाउने कानुनी व्यवस्था कार्यान्वयन गरिने</a>
 		<a class="writer df gap-1" href="#">
 			<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
@@ -26,7 +38,7 @@
 		<div class="img-outer br-2">
 			<img src="{% static 'images/niti.jpg' %}" alt="niti">
 		</div>
-	</div>
+	</div> -->
 	
 
 	<a class="wrapper mt-5 ad-wrap" href="#">

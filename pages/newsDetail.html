@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tz %}
+{% block content %}
+
+	<div class="wrapper mt-5">
+		<div class="detail dg gap-3">
+			<div class="col_9">
+				<h1 class="h1">{{ news.news_title }}</h1>
+				<h3>{{ news.news_subTitle }}</h3>
+				<a class="img-wrap mt-3" href="#">
+					<img src="{% static 'images/shi.gif' %}" alt="shi">
+				</a>
+				<aside class="pub-date my-3 py-1">
+					<figure class="df gap-2">
+						<a class="df gap-1" href="#">
+							{% if news.news_authorImg %}
+								<img class="author_img" src="{{ news.news_authorImg.url }}" alt="{{ news.news_authorName }}">
+							{% endif %}
+							<span class="gr">{{ news.news_authorName }}</span>
+						</a>
+						<figcaption class="df gap-1">
+							<i class="cf cf-clock"></i>
+							<span class="gr">Published: {{ news.published_date|localtime|date:"F j, Y, g:i A" }}</span>
+						</figcaption>
+					</figure>
+				</aside>
+				<div class="share-wrap mb-3">
+					<h3>place for social share icon</h3>
+				</div>
+				{% if news.news_image %}
+					<img src="{{ news.news_image.url }}" alt="{{ news.news_title }}">
+				{% endif %}
+				<div class="detail_text">{{ news.news_desc|safe }}</div>
+				<a class="ad-wrap mt-3" href="#">
+					<img src="{% static 'images/ncell.png' %}" alt="ncell">
+				</a>
+
+				<div class="comment-sec mt-3">
+					<h3>Places for Comment from facebook login</h3>
+				</div>
+
+				<a class="ad-wrap mt-3" href="#">
+					<img src="{% static 'images/baso.gif' %}" alt="baso">
+				</a>
+
+				<div class="mt-3">
+					<h2 class="block_title center blu df">
+						<span class="pr-2 wh-bg">सम्बन्धित समाचार</span>
+					</h2>
+					<div class="related mt-3 dg gap-2">
+						<article class="item">
+							<aside class="img-outer size-3 br-1">
+								<img src="{% static 'images/chiya.jpg' %}" alt="chiya">
+							</aside>
+							<a class="title db h4 mt-1" href="#">चिया कफी प्रवर्धन गर्दै खोटाङका स्थानीय तह</a>
+						</article>
+						<article class="item">
+							<aside class="img-outer size-3 br-1">
+								<img src="{% static 'images/raksi.jpg' %}" alt="raksi">
+							</aside>
+							<a class="title db h4 mt-1" href="#">घरेलु मदिरा ‘ब्रान्डिङ’ गर्दै मानेभञ्ज्याङ</a>
+						</article>
+						<article class="item">
+							<aside class="img-outer size-3 br-1">
+								<img src="{% static 'images/sadak.jpg' %}" alt="sadak">
+							</aside>
+							<a class="title db h4 mt-1" href="#">राजमार्ग सुधारका लागि ४० अर्ब ऋण</a>
+						</article>
+						<article class="item">
+							<aside class="img-outer size-3 br-1">
+								<img src="{% static 'images/samsad.jpg' %}" alt="samsad">
+							</aside>
+							<a class="title db h4 mt-1" href="#">संसदमा बजेटको सिद्धान्त र प्राथमिकता प्रस्तुत</a>
+						</article>
+						<article class="item">
+							<aside class="img-outer size-3 br-1">
+								<img src="{%static 'images/tal.jpg" alt="tal">
+							</aside>
+							<a class="title db h4 mt-1" href="#">पाँचबुँदे घोषणापत्र जारी गर्दै सकियो पोखरा ताल सम्मेलन</a>
+						</article>
+						<article class="item">
+							<aside class="img-outer size-3 br-1">
+								<img src="{% static 'images/chiya.jpg' %}" alt="chiya">
+							</aside>
+							<a class="title db h4 mt-1" href="#">चिया कफी प्रवर्धन गर्दै खोटाङका स्थानीय तह</a>
+						</article>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col_3">
+				<h2 class="block_title blu df">
+					<span class="pr-2 wh-bg">धेरै पढिएका</span>
+				</h2>
+				<div class="right popular dfc">
+					<a class="item df gap-1" href="#">
+						<aside class="img-outer br-1">
+							<img src="{% static 'images/Pradesh.jpg' %}" alt="jcb">
+						</aside>
+						<h5 class="title">मन्त्री सवार गाडी दुर्घटनाको कारण चालकको अदक्षता</h5>
+					</a>
+					<a class="item df gap-1" href="#">
+						<aside class="img-outer br-1">
+							<img src="{% static 'images/shrestha.jpg' %}" alt="jcb">
+						</aside>
+						<h5 class="title">वरिष्ठतम् न्यायाधीश श्रेष्ठले सम्हाले सर्वोच्चको नेतृत्व</h5>
+					</a>
+					<a class="item df gap-1" href="#">
+						<aside class="img-outer br-1">
+							<img src="{% static 'images/pahiro.jpg' %}" alt="jcb">
+						</aside>
+						<h5 class="title">दोलखामा पहिरो जाँदा एक जनाको मृत्यु, तीन जना बेपत्ता</h5>
+					</a>
+					<a class="item df gap-1" href="#">
+						<aside class="img-outer br-1">
+							<img src="{% static 'images/ncps.jpeg' %}" alt="jcb">
+						</aside>
+						<h5 class="title">कीर्तिपुरमा एकीकृत समाजवादीको सचिवालय बैठक सुरु</h5>
+					</a>
+					<a class="item df gap-1" href="#">
+						<aside class="img-outer br-1">
+							<img src="{% static 'images/shrestha.jpg' %}" alt="jcb">
+						</aside>
+						<h5 class="title">वरिष्ठतम् न्यायाधीश श्रेष्ठले सम्हाले सर्वोच्चको नेतृत्व</h5>
+					</a>
+				</div>
+				<div class="fbpage-wrap mt-3">
+					<h3>place for facebook page likebox.</h3>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	{% endblock %}

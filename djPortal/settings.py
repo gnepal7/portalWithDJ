@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'news',
+    'tinymce'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,14 @@ STATICFILES_DIRS =[
 
 MEDIA_ROOT = BASE_DIR /"media"
 MEDIA_URL = "/media/"
+
+
+TIME_ZONE = 'Asia/Kathmandu'
+USE_TZ = True
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'plugins': 'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
+    'toolbar': 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image media table | code preview',
+}
+

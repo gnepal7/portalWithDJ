@@ -38,7 +38,7 @@
 
 	<header class="header wrapper py-2 dg gap-3">
 		<div class="logo_div col_3 dfc gap-1">
-			<a class="logo hide_on_mobile" href="index.html">
+			<a class="logo hide_on_mobile" href="{% url 'home' %}">
 				<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
 			</a>
 			<time class="gr">जेठ १ २०८१, मंगलबार</time>
@@ -58,7 +58,7 @@
 					<i class="cf cf-bars toggler"></i>
 				</button>
 				<ul class="nav_ul df">
-					<li class="nav_li"><a href="index.html" class="nav_a h5 db blu active">
+					<li class="nav_li"><a href="{% url 'home' %}" class="nav_a h5 db blu active">
 						<i class="cf cf-home homeicon"></i>
 					</a></li>
 					<li class="nav_li"><a href="#" class="nav_a h5 db">समाचार</a></li>
