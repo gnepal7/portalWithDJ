@@ -1,39 +1,25 @@
-# from django.contrib import admin
 
-# from news.models import News
-
-# # Register your models here.
-# class NewsAdmin(admin.ModelAdmin):
-#   list_display=('news_title', 
-#                 'news_subTitle',
-#                 'news_authorName',
-#                 'news_authorImg',
-#                 'published_date',
-#                 'news_image',
-#                 'news_desc'
-#                 )
-
-# admin.site.register(News, NewsAdmin)
-# # Register your models here.
-
-
-
+# from django import forms
 from django.contrib import admin
+from mptt.admin import DraggableMPTTAdmin
 from .models import News, Category
 
-# Register the Category model
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+# from cabinet.admin import FileAdmin
 
-# Register the News model with custom admin configuration
+# admin.site.register_file_model(FileAdmin)
+
+@admin.register(Category)
+class CategoryAdmin(DraggableMPTTAdmin):
+    list_display = ('tree_actions', 'indented_title', 'name', 'order')
+    list_editable = ('order',)
+    search_fields = ('name',)
+    list_per_page = 20
+    pass
+
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('news_title', 'published_date', 'news_authorName')
     list_filter = ('published_date', 'categories')
     search_fields = ('news_title', 'news_subTitle', 'news_authorName')
-    filter_horizontal = ('categories',)  # Displays categories as a horizontal checkbox-like interface
-
-    # Optional: If you want to prepopulate the slug field based on the title
-    prepopulated_fields = {'news_title': ('news_title',)}
+    filter_horizontal = ('categories',)
+    raw_id_fields = ['news_image']

@@ -15,7 +15,7 @@
 					<figure class="df gap-2">
 						<a class="df gap-1" href="#">
 							{% if news.news_authorImg %}
-								<img class="author_img" src="{{ news.news_authorImg.url }}" alt="{{ news.news_authorName }}">
+								<img class="author_img" src="{{ news.news_authorImg.file.url }}" alt="{{ news.news_authorName }}">
 							{% endif %}
 							<span class="gr">{{ news.news_authorName }}</span>
 						</a>
@@ -29,7 +29,7 @@
 					<h3>place for social share icon</h3>
 				</div>
 				{% if news.news_image %}
-					<img src="{{ news.news_image.url }}" alt="{{ news.news_title }}">
+					<img src="{{ news.news_image.file.url }}" alt="{{ news.news_title }}">
 				{% endif %}
 				<div class="detail_text">{{ news.news_desc|safe }}</div>
 				<a class="ad-wrap mt-3" href="#">

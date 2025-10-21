@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news',
-    'tinymce'
+    'tinymce',
+    'mptt',
+    'cabinet',
+    'imagefield',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +133,15 @@ STATICFILES_DIRS =[
 
 MEDIA_ROOT = BASE_DIR /"media"
 MEDIA_URL = "/media/"
+
+
+# CABINET_MEDIA_PATH = 'news/'
+# CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH
+# CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
+
+CABINET_MEDIA_PATH = 'cabinet/'  # Update to match the base cabinet path
+CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  # Points to media/cabinet/
+CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  # Adjust URL
 
 
 TIME_ZONE = 'Asia/Kathmandu'

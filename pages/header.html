@@ -1,9 +1,11 @@
 {% load static %}
-
+{% load mptt_tags %}
+{% load custom_filters %}
 {% static "images" as baseURL %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,10 +17,10 @@
 	<meta property="og:description" content="Latest news and updates from around the world.">
 	<meta property="og:image" content="{%static 'images/logo.png' %}">
 	<meta property="og:url" content="https://News Portal.com/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="News Portal">
-  <meta name="twitter:description" content="Latest news and updates from around the world.">
-  <meta name="twitter:image" content="{%static 'images/logo.png' %}">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="News Portal">
+	<meta name="twitter:description" content="Latest news and updates from around the world.">
+	<meta name="twitter:image" content="{%static 'images/logo.png' %}">
 	<title>News Portal</title>
 
 	<!-- custom favicon -->
@@ -31,6 +33,7 @@
 	<!-- custom -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/front.css' %}">
 </head>
+
 <body>
 	<script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
 	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
@@ -48,42 +51,50 @@
 		</a>
 	</header>
 
+
 	<nav class="nav">
 		<div class="wrapper df">
 			<div class="nav_inner">
-				<a href="index.html" class="logo hide_on_desktop">
+				<a href="{% url 'home' %}" class="logo hide_on_desktop">
 					<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
 				</a>
 				<button class="nav_toggler">
 					<i class="cf cf-bars toggler"></i>
 				</button>
 				<ul class="nav_ul df">
-					<li class="nav_li"><a href="{% url 'home' %}" class="nav_a h5 db blu active">
-						<i class="cf cf-home homeicon"></i>
-					</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">समाचार</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">राजनीति</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">अर्थ</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">खेलकूद</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">विचार</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">मनोरञ्जन</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">पर्यटन</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">अन्तरवार्ता</a></li>
-					<li class="nav_li"><a href="#" class="nav_a h5 db">स्वास्थ्य</a></li>
-					<li class="nav_li drop"><a href="#" class="nav_a h5 db">अन्य</a>
-						<ul class="submnu">
-							<li class="submnu_item">
-								<a href="#" class="submnu_link h6 db">अन्तर्राष्ट्रिय</a>
-								<a href="#" class="submnu_link h6 db">स्थानीय तह</a>
-								<a href="#" class="submnu_link h6 db">अपराध/सुरक्षा</a>
-								<a href="#" class="submnu_link h6 db">सस्कृति/कला-साहित्य</a>
-								<a href="#" class="submnu_link h6 db">आजको तस्बिर</a>
-								<a href="#" class="submnu_link h6 db">कृषि</a>
-								<a href="#" class="submnu_link h6 db">शिक्षा</a>
-								<a href="#" class="submnu_link h6 db">पत्रपत्रिका</a>
-							</li>
-						</ul>
+					<li class="nav_li">
+						<a href="{% url 'home' %}"
+							class="nav_a h5 db blu {% if request.path == '/' %} active {% endif %}">
+							<i class="cf cf-home"></i>
+						</a>
 					</li>
+
+					{% if categories|length > 0 %}
+					{% recursetree categories %}
+					<li class="nav_li {% if node.name == 'अन्य' %} drop {% endif %}">
+						<a href="{% url 'category_page' node.name %}"
+							class="nav_a h5 db {% if request.path == '/'|add:node.name|add:'/' %} active {% endif %}">
+							{{ node.name }}
+						</a>
+						{% if node.get_descendants %}
+						<ul class="submnu">
+							{% for child in node.get_descendants %}
+							{% if child != node %}
+							<li class="submnu_item">
+								<a href="{% url 'category_page' child.name %}" class="submnu_link h6 db">
+									{{ child.name }}
+								</a>
+							</li>
+							{% endif %}
+							{% endfor %}
+						</ul>
+						{% endif %}
+					</li>
+					{% endrecursetree %}
+					{% else %}
+					<li>No categories available.</li>
+					{% endif %}
+
 				</ul>
 			</div>
 		</div>
