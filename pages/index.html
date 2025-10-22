@@ -1,28 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
 
 	<a class="wrapper mt-5 ad-wrap" href="#">
 		<img src="{% static 'images/ad-header.gif' %}" alt="ad-header">
 	</a>
-
+	
 	{% for flash in flashnews %}
 		<div class="banner wrapper mt-5 dfc gap-3 pb-5">
 			<a class="h1" href="{% url 'newsDetail' flash.id %}">{{ flash.news_title }}</a>
-			<a class="writer df gap-1" href="#">
-				{% if flash.news_authorImg %}
-					<img src="{{ flash.news_authorImg.file.url }}" alt="{{ flash.news_authorName }}">
-				{% else %}
-					<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Logo">
-				{% endif %}
-				<span class="gr">{{ flash.news_authorName }}</span>
-			</a>
+			{% if flash.news_author %}
+				<a class="writer df gap-1" href="{% url 'authorDetail' flash.news_author.id %}">
+					{% with author_display=flash.news_author.get_author_display %}
+						<img src="{{ author_display.image }}" alt="{{ author_display.name }}">
+						<span class="gr">{{ author_display.name }}</span>
+					{% endwith %}
+				</a>
+			{% else %}
+				<div class="writer df gap-1">
+					{% with author_display=flash.news_author.get_author_display %}
+						<img src="{% static 'images/man.jpg' %}" alt="पोर्टल रिपोर्टर">
+						<span class="gr">पोर्टल रिपोर्टर</span>
+					{% endwith %}
+				</div>
+			{% endif %}
 			<div class="img-outer br-2">
-				{% if flash.news_image %}
-					<img src="{{ flash.news_image.file.url }}" alt="{{ flash.news_title }}">
-				{% else %}
-					<img src="{% static 'images/ss.jpg' %}" alt="ss">
-				{% endif %}
+				<img src="{{ flash|news_image }}" alt="{{ taja.news_title }}">
 			</div>
 		</div>
 	{% empty %}
@@ -40,21 +44,17 @@
 				<img src="{% static 'images/maruti.gif' %}" alt="maruti">
 			</a>
 
-			{% for main in mainNews %}
+			{% for fn in featured %}
 			<article class="main_item">
-				<a class="link dfc gap-1" href="{% url 'newsDetail' main.id %}">
+				<a class="link dfc gap-1" href="{% url 'newsDetail' fn.id %}">
 					<aside class="img-outer br-1">
-						{% if main.news_image %}
-							<img src="{{ main.news_image.file.url }}" alt="{{ main.news_title }}">
-						{% else %}
-							<img src="{% static 'images/ss.jpg' %}" alt="ss">
-						{% endif %}
+						<img src="{{ fn|news_image }}" alt="{{ taja.news_title }}">
 					</aside>
-					<h2 class="title">{{ main.news_title }}</h2>
+					<h2 class="title">{{ fn.news_title }}</h2>
 				</a>
 			</article>
 			{% empty %}
-				<p>No main news available. Debug: {{ mainNews|length }} items.</p>  
+				<p>No main news available. Debug: {{ featured|length }} items.</p>  
 			{% endfor %}
 
 			<a class="ad-wrap" href="#">
@@ -65,62 +65,18 @@
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">ताजा अपडेट</span>
 			</h2>
-			<div class="right recent dfc">
+			<div class="right recent dfc">		
 			
-
 				{% for taja in tajanews %}
 					<a class="item df gap-1" href="{% url 'newsDetail' taja.id %}">
 						<aside class="img-outer br-1">
-							{% if taja.news_image %}
-								<img src="{{ taja.news_image.file.url }}" alt="{{ taja.news_title }}">
-							{% else %}
-								<img src="{% static 'images/Pradesh.jpg' %}" alt="jcb">
-							{% endif %}
+							<img src="{{ taja|news_image }}" alt="{{ taja.news_title }}">
 						</aside>
 						<h5 class="title">{{ taja.news_title }}</h5>
 					</a>
 				{% empty %}
 					<p>No taja news available.</p>
 				{% endfor %}
-
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/Pradesh.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">मन्त्री सवार गाडी दुर्घटनाको कारण चालकको अदक्षता</h5>
-				</a>
-
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/shrestha.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">वरिष्ठतम् न्यायाधीश श्रेष्ठले सम्हाले सर्वोच्चको नेतृत्व</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/pahiro.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">दोलखामा पहिरो जाँदा एक जनाको मृत्यु, तीन जना बेपत्ता</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/ncps.jpeg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">कीर्तिपुरमा एकीकृत समाजवादीको सचिवालय बैठक सुरु</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/shrestha.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">वरिष्ठतम् न्यायाधीश श्रेष्ठले सम्हाले सर्वोच्चको नेतृत्व</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/pahiro.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">दोलखामा पहिरो जाँदा एक जनाको मृत्यु, तीन जना बेपत्ता</h5>
-				</a>
-
 
 			</div>
 		</div>
@@ -134,19 +90,20 @@
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">मुख्य समाचार</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
-					<i class="cf cf-list-alt"></i>
-				</a>
 			</h2>
 
 			<div class="left news dg gap-2">
+
+				{% for mn in mainNews %}
 				<article class="item">
 					<aside class="img-outer br-1">
-						<img src="{% static 'images/school.webp' %}">
+						<img src="{{ mn|news_image }}" alt="{{ taja.news_title }}">
 					</aside>
-					<a class="title db" href="#">विद्यालय शिक्षा विधेयकविरुद्ध निजी विद्यालयहरूद्वारा आन्दोलनको घोषणा</a>
+					<a class="title db" href="{% url 'newsDetail' mn.id %}">{{mn.news_title}}</a>
 				</article>
-				<article class="item">
+				{% endfor %}
+
+				<!-- <article class="item">
 					<aside class="img-outer br-1">
 						<img src="{% static 'images/india.jpg' %}">
 					</aside>
@@ -175,7 +132,7 @@
 						<img src="{% static 'images/rajmarga.jpg' %}">
 					</aside>
 					<a class="title db" href="#">वीपी राजमार्ग एकतर्फी रुपमा सञ्चालन</a>
-				</article>
+				</article> -->
 			</div>
 
 		</div>

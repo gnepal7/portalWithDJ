@@ -26,7 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.landingPage, name='home' ),
     path('<str:category>/', views.newsListing, name='category_page'),
-    path('newsDetail/<int:id>', views.newsDetail, name='newsDetail')
+    path('newsDetail/<int:id>', views.newsDetail, name='newsDetail'),
+    path('author/<int:pk>/', views.authorDetail, name='authorDetail')
 ] 
 
 urlpatterns += static(settings.CABINET_MEDIA_URL, document_root=settings.CABINET_MEDIA_ROOT)

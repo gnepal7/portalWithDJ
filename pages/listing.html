@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load tz %}
-
+{% load custom_filters %}
 {% block content %}
 <div class="wrapper mt-5">
     <h2 class="block_title center blu df">
@@ -11,25 +11,28 @@
         {% for news in news_list %}
             <div class="banner mt-2 dfc gap-2 pb-3">
                 <aside class="img-outer br-2">
-                    {% if news.news_image %}
-                        <img src="{{ news.news_image.file.url }}" alt="{{ news.news_title }}">
-                    {% else %}
-                        <img src="{% static 'images/ss.jpg' %}" alt="ss">
-                    {% endif %}
+                    <img src="{{ news|news_image }}" alt="{{ news.news_title }}">
                 </aside>
                 <a class="h1" href="{% url 'newsDetail' news.id %}">{{ news.news_title }}</a>
                 <figure class="df gap-2">
-                    <a class="df gap-1" href="#">
-                        {% if news.news_authorImg %}
-                            <img class="author_img" src="{{ news.news_authorImg.file.url }}" alt="{{ news.news_authorName }}">
-                        {% else %}
-                            <img class="author_img" src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Logo">
-                        {% endif %}
-                        <span class="gr">{{ news.news_authorName }}</span>
-                    </a>
+                    {% if news.news_author %}
+                        <a class="writer df gap-1" href="{% url 'authorDetail' flash.news_author.id %}">
+                            {% with author_display=flash.news_author.get_author_display %}
+                                <img src="{{ author_display.image }}" alt="{{ author_display.name }}">
+                                <span class="gr">{{ author_display.name }}</span>
+                            {% endwith %}
+                        </a>
+                    {% else %}
+                        <div class="writer df gap-1">
+                            {% with author_display=flash.news_author.get_author_display %}
+                                <img src="{% static 'images/man.jpg' %}" alt="पोर्टल रिपोर्टर">
+                                <span class="gr">पोर्टल रिपोर्टर</span>
+                            {% endwith %}
+                        </div>
+                    {% endif %}
                     <figcaption class="df gap-1">
                         <i class="cf cf-clock"></i>
-                        <span class="gr">Published: {{ news.published_date|localtime|date:"F j, Y, g:i A" }}</span>
+                        <span class="gr">{{ news.published_date|localtime|nepali_date }}</span>
                     </figcaption>
                 </figure>
                 <p>{{ news.news_desc|truncatewords:30|safe }}</p>
@@ -40,11 +43,7 @@
                 {% if not forloop.first %}
                     <article class="item">
                         <aside class="img-outer size-3 br-1">
-                            {% if news.news_image %}
-                                <img src="{{ news.news_image.url }}" alt="{{ news.news_title }}">
-                            {% else %}
-                                <img src="{% static 'images/ss.jpg' %}" alt="ss">
-                            {% endif %}
+                            <img src="{{ news|news_image }}" alt="{{ news.news_title }}">
                         </aside>
                         <a class="title db h3 mt-1" href="{% url 'newsDetail' news.id %}">{{ news.news_title }}</a>
                     </article>
