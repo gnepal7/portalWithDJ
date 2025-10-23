@@ -16,8 +16,8 @@
                 <a class="h1" href="{% url 'newsDetail' news.id %}">{{ news.news_title }}</a>
                 <figure class="df gap-2">
                     {% if news.news_author %}
-                        <a class="writer df gap-1" href="{% url 'authorDetail' flash.news_author.id %}">
-                            {% with author_display=flash.news_author.get_author_display %}
+                        <a class="writer df gap-1" href="{% url 'authorDetail' news.news_author.id %}">
+                            {% with author_display=news.news_author.get_author_display %}
                                 <img src="{{ author_display.image }}" alt="{{ author_display.name }}">
                                 <span class="gr">{{ author_display.name }}</span>
                             {% endwith %}

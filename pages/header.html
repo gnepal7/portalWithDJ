@@ -44,13 +44,17 @@
 			<a class="logo hide_on_mobile" href="{% url 'home' %}">
 				<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
 			</a>
-			<time class="gr">जेठ १ २०८१, मंगलबार</time>
+			<time class="gr">{{ ""|current_nepali_date }}</time>
 		</div>
-		<a class="ad-wrap col_9" href="#">
-			<img src="{% static 'images/ad-header.gif' %}" alt="bajaj">
-		</a>
-	</header>
+				
+		{% get_ads_by_position 'header-right' as ads %}
+		{% for ad in ads %}
+			<a class="ad-wrap col_9" href="{{ ad.link|default:'#' }}" target="_blank">
+				<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+			</a>
+		{% endfor %}
 
+	</header>
 
 	<nav class="nav">
 		<div class="wrapper df">

@@ -3,9 +3,12 @@
 {% load custom_filters %}
 {% block content %}
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/ad-header.gif' %}" alt="ad-header">
-	</a>
+	{% get_ads_by_position 'under-menu' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 	
 	{% for flash in flashnews %}
 		<div class="banner wrapper mt-5 dfc gap-3 pb-5">
@@ -33,16 +36,22 @@
 		<p>No flash news available.</p>
 	{% endfor %}
 
-
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/naree.gif' %}" alt="naree">
-	</a>
+	{% get_ads_by_position 'under-banner' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="main col_9 dg gap-2">
-			<a class="wrapper ad-wrap col_12 no-padding" href="#">
-				<img src="{% static 'images/maruti.gif' %}" alt="maruti">
-			</a>
+
+			{% get_ads_by_position 'featured-top-left' as ads %}
+			{% for ad in ads %}
+				<a class="wrapper ad-wrap col_12 no-padding" href="{{ ad.link|default:'#' }}" target="_blank">
+					<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+				</a>
+			{% endfor %}
 
 			{% for fn in featured %}
 			<article class="main_item">
@@ -57,9 +66,13 @@
 				<p>No main news available. Debug: {{ featured|length }} items.</p>  
 			{% endfor %}
 
-			<a class="ad-wrap" href="#">
-				<img src="{% static 'images/shivam.gif' %}" alt="shivam">
-			</a>
+			{% get_ads_by_position 'featured-bottom-left' as ads %}
+			{% for ad in ads %}
+				<a class="ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+					<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+				</a>
+			{% endfor %}
+
 		</div>
 		<div class="col_3">
 			<h2 class="block_title blu df">
@@ -82,9 +95,12 @@
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/scarpio.gif' %}" alt="scarpio">
-	</a>
+	{% get_ads_by_position 'under-featured' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="col_9">
@@ -103,183 +119,91 @@
 				</article>
 				{% endfor %}
 
-				<!-- <article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/india.jpg' %}">
-					</aside>
-					<a class="title db" href="#">अल्पमतमा रहेको इण्डिया गठबन्धनले किन ल्यायो मोदीविरुद्ध अविश्वास प्रस्ताव ?</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rajmarga.jpg' %}">
-					</aside>
-					<a class="title db" href="#">वीपी राजमार्ग एकतर्फी रुपमा सञ्चालन</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/giri.jpg' %}">
-					</aside>
-					<a class="title db" href="#">कालीगण्डकी बचाऔं अभियानका अभियन्ता आरके अदिप्तविरुद्ध पक्राउ पुर्जी जारी</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/staff.jpg' %}">
-					</aside>
-					<a class="title db" href="#">कामबाट निकालेपछि आन्दोलनमा उत्रिए बुढीगंगाका कर्मचारी</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rajmarga.jpg' %}">
-					</aside>
-					<a class="title db" href="#">वीपी राजमार्ग एकतर्फी रुपमा सञ्चालन</a>
-				</article> -->
 			</div>
 
 		</div>
 
 		<div class="col_3 dfc gap-2">
-			<a class="ad-wrap" href="#">
-				<img src="{% static 'images/ime.gif' %}" alt="ime">
-			</a>
-			<a class="ad-wrap" href="#">
-				<img src="{% static 'images/tata.gif' %}" alt="tata">
-			</a>
-			<a class="ad-wrap" href="#">
-				<img src="{% static 'images/sales.gif' %}" alt="sales">
-			</a>
+			{% get_ads_by_position 'mainNews-right' as ads %}
+			{% for ad in ads %}
+				<a class="ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+					<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+				</a>
+			{% endfor %}
+			
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/nic.gif' %}" alt="nic">
-	</a>
+	{% get_ads_by_position 'under-mainNews' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">राजनीति</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/राजनीति">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="full dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rabi.png' %}">
-					</aside>
-					<a class="title db" href="#">सरकारले सिनामंगलबाट तस्करलाई लात्ताले प्वाक्क हानेर छाड्यो : रवि लामिछाने</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/daman.jpg' %}">
-					</aside>
-					<a class="title db" href="#">संसद्‍मा पुग्यो तामाङ समुदायमाथि दमनको विषय</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rabi.png' %}">
-					</aside>
-					<a class="title db" href="#">संसद्‌मा रविको प्रश्न– तीन नेता मिलेर रातारात किन बार्गेनिङ नगरेको?</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/bisho.png' %}">
-					</aside>
-					<a class="title db" href="#">एमालेलाई विश्वप्रकाशको प्रश्न : संसद् अवरोध भइरहँदा सत्तापक्षले बोल्न रत्नपार्क जानु पर्ने हो?</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/sitaula.jpg' %}">
-					</aside>
-					<a class="title db" href="#">कृष्ण सिटौला भन्छन् : संविधान र गणतन्त्र आयो, हामीले के पायौँ भनेर जनताले सोध्न थाले</a>
-				</article>
+				{% for rn in rajnitiNews %}
+					<article class="item">
+						<aside class="img-outer br-1">
+							<img src="{{ rn|news_image }}" alt="{{ rn.news_title }}">
+						</aside>
+						<a class="title db" href="{% url 'newsDetail' rn.id %}">{{rn.news_title}}</a>
+					</article>
+				{% endfor %}
 			</div>
 		</div>
 		<div class="col_3">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">शिक्षा</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/शिक्षा">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="right edu dfc">
-				<a class="item df gap-1" href="#">
+				{% for en in eduNews %}
+				<a class="item df gap-1" href="{% url 'newsDetail' en.id %}">
 					<aside class="img-outer br-1">
-						<img src="{% static 'images/Pradesh.jpg' %}" alt="jcb">
+						<img src="{{ en|news_image }}" alt="{{ en.news_title }}">
 					</aside>
-					<h5 class="title">मन्त्री सवार गाडी दुर्घटनाको कारण चालकको अदक्षता</h5>
+					<h5 class="title">{{en.news_title}}</h5>
 				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/shrestha.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">वरिष्ठतम् न्यायाधीश श्रेष्ठले सम्हाले सर्वोच्चको नेतृत्व</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/pahiro.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">दोलखामा पहिरो जाँदा एक जनाको मृत्यु, तीन जना बेपत्ता</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/ncps.jpeg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">कीर्तिपुरमा एकीकृत समाजवादीको सचिवालय बैठक सुरु</h5>
-				</a>
-
+				{% endfor %}
 			</div>
 		</div>
 	</div>
-
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/maruti.gif' %}" alt="maruti">
-	</a>
+	
+	{% get_ads_by_position 'under-rajniti' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5">
 		<h2 class="block_title center blu df">
 			<span class="pr-2 wh-bg">स्वास्थ्य र जीवनशैली</span>
-			<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+			<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/स्वास्थ्य">सबै
 				<i class="cf cf-list-alt"></i>
 			</a>
 		</h2>
 		<div class="left dg gap-2">
+			{% for hn in healthNews %}
 			<article class="item">
 				<aside class="img-outer br-1">
-					<img src="{% static 'images/kera.webp' %}" alt="kera">
+					<img src="{{ hn|news_image }}" alt="{{ hn.news_title }}">
 				</aside>
-				<a class="title db" href="#">खाली पेटमा के-के खानु हुँदैन ?</a>
+				<a class="title db" href="{% url 'newsDetail' hn.id %}">{{hn.news_title}}</a>
 			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/salad.jpg' %}" alt="salad">
-				</aside>
-				<a class="title db" href="#">सलाद खाँदा हुने फाइदा</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/berd.jpg' %}" alt="berd">
-				</aside>
-				<a class="title db" href="#">बर्दगोरिया पूर्ण खोप सुनिश्चितता पालिका घोषणा</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/life.jpeg' %}" alt="life">
-				</aside>
-				<a class="title db" href="#">सफल दाम्पत्य जीवन</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/om.jpg' %}" alt="om">
-				</aside>
-				<a class="title db" href="#">थाइराइड अनियन्त्रित हुँदा जुनसुकै अंगमा पनि असर गर्न सक्छ</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/berd.jpg' %}" alt="berd">
-				</aside>
-				<a class="title db" href="#">बर्दगोरिया पूर्ण खोप सुनिश्चितता पालिका घोषणा</a>
-			</article>
+			{% endfor %}
+			
 		</div>
 	</div>
 

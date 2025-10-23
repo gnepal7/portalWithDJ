@@ -47,3 +47,39 @@ class News(models.Model):
 
     def __str__(self):
         return self.news_title
+
+class Advertisement(models.Model):
+    POSITION_CHOICES = [
+        ('header-right', 'Header Right'),
+        ('under-menu', 'Under Menu'),
+        ('under-banner', 'Under Banner'),
+        ('featured-top-left', 'Featured Top Left'),
+        ('featured-bottom-left', 'Featured bottom Left'),
+        ('under-featured', 'Under Featured'),
+        ('mainNews-right', 'Right to Main News'),
+        ('under-mainNews', 'Under MainNews'),
+        ('under-rajniti', 'Under Rajniti'),
+        ('under-health', 'Under Health'),
+        ('under-artha', 'Under Artha'),
+        ('under-international', 'Under International'),
+        ('under-interview', 'Under Interview'),
+        ('under-photo-feature', 'Under Photo Feature'),
+        ('under-suchana-prabidhi', 'Under Suchana Prabidhi'),
+        ('under-kala', 'Under Kala'),
+        ('under-vivid-right', 'Right to vivid'),
+        ('under-vivid', 'Under Vivid'),
+        ('under-manoranjan', 'Under Manoranjan'),
+        ('under-featured', 'Under Featured'),
+        ('under-krishi', 'Under Krishi'),
+        ('detail-top', 'Top on Detail'),
+        ('detail-bottom1', 'Bottom1 on Detail'),
+        ('detail-bottom2', 'Bottom2 on Detail'),
+
+    ]
+    position = models.CharField(max_length=70, choices=POSITION_CHOICES)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    image = CabinetForeignKey('cabinet.File', null=True, blank=True, on_delete=models.SET_NULL, related_name='ad_images')
+    link = models.URLField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.name or f"Ad at {self.position}"
