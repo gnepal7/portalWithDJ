@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+    <div class="wrapper mt-5 page_content">
+		<h1>{{ page.title }}</h1>
+        {% if page.image %}
+            <img src="{{ page.image.file.url }}" alt="{{ page.title }}">
+        {% endif %}
+        <div class="content">{{ page.content|safe }}</div>
+
+	</div>
+
+{% endblock %}

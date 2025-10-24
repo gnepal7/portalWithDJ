@@ -69,8 +69,6 @@ class Advertisement(models.Model):
         ('under-vivid-right', 'Right to vivid'),
         ('under-vivid', 'Under Vivid'),
         ('under-manoranjan', 'Under Manoranjan'),
-        ('under-featured', 'Under Featured'),
-        ('under-krishi', 'Under Krishi'),
         ('detail-top', 'Top on Detail'),
         ('detail-bottom1', 'Bottom1 on Detail'),
         ('detail-bottom2', 'Bottom2 on Detail'),
@@ -83,3 +81,25 @@ class Advertisement(models.Model):
 
     def __str__(self):
         return self.name or f"Ad at {self.position}"
+
+
+class Page(models.Model):
+    PAGE_TYPES = [
+        ('हाम्रो टिम', 'हाम्रो टिम'),
+        ('हाम्रो बारेमा', 'हाम्रो बारेमा'),
+        ('गोपनीय नीति', 'गोपनीय नीति'),
+        ('सम्पर्क गर्नुहोस्', 'सम्पर्क गर्नुहोस्'),
+    ]
+    title = models.CharField(max_length=50, choices=PAGE_TYPES, unique=True)
+    image = CabinetForeignKey('cabinet.File', null=True, blank=True, on_delete=models.SET_NULL, related_name='page_images')
+    content = HTMLField()
+
+    def __str__(self):
+        return self.title
+
+class Logo(models.Model):
+    title = models.CharField(max_length=100)
+    image = CabinetForeignKey('cabinet.File', null=True, blank=True, on_delete=models.SET_NULL, related_name='logo_images')
+
+    def __str__(self):
+        return self.title

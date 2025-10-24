@@ -207,200 +207,171 @@
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/naree.gif' %}" alt="naree">
-	</a>
+	{% get_ads_by_position 'under-health' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5">
 		<h2 class="block_title blu df">
 			<span class="pr-2 wh-bg">अर्थ / वाणिज्य</span>
-			<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+			<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/अर्थ">सबै
 				<i class="cf cf-list-alt"></i>
 			</a>
 		</h2>
 
 		<div class="artha dg gap-2">
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/mahat.jpg' %}" alt="mahat">
-				</aside>
-				<a class="title db" href="#">सेयर बजारमा सीमित व्यक्तिले मात्रै फाइदा उठाउने प्रवृत्तिको अन्त्य हुनुपर्छ : अर्थमन्त्री</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/chiya.jpg' %}" alt="chiya">
-				</aside>
-				<a class="title db" href="#">चिया कफी प्रवर्धन गर्दै खोटाङका स्थानीय तह</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/raksi.jpg' %}" alt="raksi">
-				</aside>
-				<a class="title db" href="#">घरेलु मदिरा ‘ब्रान्डिङ’ गर्दै मानेभञ्ज्याङ</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/sadak.jpg' %}" alt="sadak">
-				</aside>
-				<a class="title db" href="#">राजमार्ग सुधारका लागि ४० अर्ब ऋण</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/samsad.jpg' %}" alt="samsad">
-				</aside>
-				<a class="title db" href="#">संसदमा बजेटको सिद्धान्त र प्राथमिकता प्रस्तुत</a>
-			</article>
-			<article class="item">
-				<aside class="img-outer br-1">
-					<img src="{% static 'images/tal.jpg' %}" alt="tal">
-				</aside>
-				<a class="title db" href="#">पाँचबुँदे घोषणापत्र जारी गर्दै सकियो पोखरा ताल सम्मेलन</a>
-			</article>
-
+			{% for econ in ecoNews %}
+				<article class="item">
+					<aside class="img-outer br-1">
+						<img src="{{ econ|news_image }}" alt="{{ hn.news_title }}">
+					</aside>
+					<a class="title db" href="{% url 'newsDetail' econ.id %}">{{econ.news_title}}</a>
+				</article>
+			{% endfor %}
 		</div>
 
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/maruti.gif' %}" alt="maruti">
-	</a>
+	{% get_ads_by_position 'under-artha' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">अन्तर्राष्ट्रिय</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/अन्तर्राष्ट्रिय">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="left3 inter dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/adhi.jpg' %}" alt="adhi">
-					</aside>
-					<a class="title db" href="#">अमेरिकामा आँधी: १० लाख घरमा बिजुली गयो, पाँच करोड मानिस प्रभावित</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/syrup.jpg' %}" alt="syrup">
-					</aside>
-					<a class="title db" href="#">भारतीय कम्पनीको कफ सिरप प्रयोग नगर्न विश्व स्वास्थ्य संगठनको चेतावनी</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rahul.webp' %}" alt="rahul">
-					</aside>
-					<a class="title db" href="#">संसदमा फर्किए राहुल गान्धी, स्वागतमा नाराबाजी, मिठाइ बाँडियो</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/default.jpg' %}" alt="default">
-					</aside>
-					<a class="title db" href="#">कम्बोडियाको नयाँ प्रधानमन्त्रीमा हुन सेनका जेठा छोरा</a>
-				</article>
+				{% for intn in intNews %}
+					<article class="item">
+						<aside class="img-outer br-1">
+							<img src="{{ intn|news_image }}" alt="{{ intv.news_title }}">
+						</aside>
+						<a class="title db" href="{% url 'newsDetail' intn.id %}">{{intn.news_title}}</a>
+					</article>
+				{% endfor %}
+				
 			</div>
 		</div>
 		<div class="col_3 p-2 br-2 light-bg">
 			<h2 class="block_title blu df">
 				<span class="pr-2 light-bg">बिचार</span>
-				<a class="block_link pl-2 light-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 light-bg df gap-1" href="http://127.0.0.1:8000/विचार">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="bichar dg">
-				<article class="item df gap-1">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/buddhi.png' %}" alt="buddhi">
-					</aside>
-					<aside class="text-wrap dfc gap-1">
-						<a class="title db" href="#">धर्मनिरपेक्षता : बहुसङ्ख्यक नेपालीको मनोविज्ञानमा चोट !</a>
-						<span class="writer blu h5 db">बुद्धिसागर भट्टराई</span>
-					</aside>
-				</article>
-				<article class="item df gap-1">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rc.jpg' %}" alt="rc">
-					</aside>
-					<aside class="text-wrap dfc gap-1">
-						<a class="title db" href="#">ओरालो लाग्दा कम्युनिष्ट पार्टीहरु र आशलाग्दा प्रचण्ड</a>
-						<span class="writer blu h5 db">डा. आर. सी. लामिछाने</span>
-					</aside>
-				</article>
+				{% for bv in bicharViews %}
+					<article class="item df gap-1">					
+						<aside class="img-outer br-1">
+							{% if bv.news_author %}
+								{% with author_display=bv.news_author.get_author_display %}
+									<img src="{{ author_display.image }}" alt="{{ author_display.name }}">
+								{% endwith %}
+							{% else %}
+								<img src="{{ bv|news_image }}" alt="{{ bv.news_title }}">
+							{% endif %}
+						</aside>
+						<aside class="text-wrap dfc gap-1">
+							<a class="title db" href="{% url 'newsDetail' bv.id %}">{{bv.news_title}}</a>
+							{% if bv.news_author %}
+								{% with author_display=bv.news_author.get_author_display %}
+									<a class="writer df gap-1" href="{% url 'authorDetail' bv.news_author.id %}">
+										<span class="writer blu h5 db">{{ author_display.name }}</span>
+									</a>
+								{% endwith %}
+							{% else %}
+								<span class="writer blu h5 db">{{ author_display.name }}</span>
+							{% endif %}
+						</aside>
+					</article>
+				{% endfor %}
 
 			</div>
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/scarpio.gif' %}" alt="maruti">
-	</a>
+	{% get_ads_by_position 'under-international' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">अन्तरवार्ता</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/अन्तरवार्ता">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 
 			<div class="intv dg gap-2">
-				<article class="item df gap-1">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/sarad.jpg' %}" alt="sarad">
-					</aside>
-					<aside class="text-wrap dfc gap-1">
-						<a class="title db" href="#">श्रम बजारअनुसार श्रमिकको ‘ब्राण्डिङ’ गरिनेछ : मन्त्री भण्डारी</a>
-						<span class="writer blu h5 db">शरतसिंह भण्डारी श्रम, मन्त्री रोजगार तथा सामाजिक सुरक्षा</span>
-					</aside>
-				</article>
-				<article class="item df gap-1">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/bal.jpeg' %}" alt="bal">
-					</aside>
-					<aside class="text-wrap dfc gap-1">
-						<a class="title db" href="#">पत्रकारितामा परीक्षा प्रणाली लागू गर्नुपर्छ : अध्यक्ष बस्नेत</a>
-						<span class="writer blu h5 db">बालकृष्ण बस्नेत, अध्यक्ष प्रेस काउन्सिल नेपाल   </span>
-					</aside>
-				</article>
+				{% for iv in interViews %}
+					<article class="item df gap-1">
+						<aside class="img-outer br-1">
+							{% if iv.news_author %}
+								{% with author_display=iv.news_author.get_author_display %}
+									<img src="{{ author_display.image }}" alt="{{ author_display.name }}">
+								{% endwith %}
+							{% else %}
+								<img src="{{ iv|news_image }}" alt="{{ iv.news_title }}">
+							{% endif %}
+						</aside>
+						<aside class="text-wrap dfc gap-1">
+							<a class="title db" href="{% url 'newsDetail' iv.id %}">{{iv.news_title}}</a>
+							{% if iv.news_author %}
+								{% with author_display=iv.news_author.get_author_display %}
+									<a class="writer df gap-1" href="{% url 'authorDetail' iv.news_author.id %}">
+										<span class="writer blu h5 db">{{ author_display.name }}</span>
+									</a>
+								{% endwith %}
+							{% else %}
+								<span class="writer blu h5 db">{{ author_display.name }}</span>
+							{% endif %}
+						</aside>
+					</article>
+				{% endfor %}
 			</div>
 
 		</div>
 		<div class="col_3">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">स्थानीय तह</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/स्थानीय तह">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="right local dfc">
-				<a class="item df gap-1" href="#">
+				{% for ln in localNews %}
+				<a class="item df gap-1" href="{% url 'newsDetail' ln.id %}">
 					<aside class="img-outer br-1">
-						<img src="{% static 'images/Pradesh.jpg' %}" alt="jcb">
+						<img src="{{ ln|news_image }}" alt="{{ ln.news_title }}">
 					</aside>
-					<h5 class="title">मन्त्री सवार गाडी दुर्घटनाको कारण चालकको अदक्षता</h5>
+					<h5 class="title">{{ln.news_title}}</h5>
 				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/shrestha.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">वरिष्ठतम् न्यायाधीश श्रेष्ठले सम्हाले सर्वोच्चको नेतृत्व</h5>
-				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/pahiro.jpg' %}" alt="jcb">
-					</aside>
-					<h5 class="title">दोलखामा पहिरो जाँदा एक जनाको मृत्यु, तीन जना बेपत्ता</h5>
-				</a>
-
+				{% endfor %}
 			</div>
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/maruti.gif' %}" alt="maruti">
-	</a>
+	{% get_ads_by_position 'under-interview' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<section class="mt-5 py-5 bl-ful">
 		<div class="wrapper">
@@ -408,142 +379,87 @@
 				<span class="pr-2 bl-ful">आजको तस्बिर</span>
 			</h2>
 			<div class="today-pic pb-4 owl-carousel owl-theme">	
-							
-				<article class="item br-2 df p-2" style="background:url('static/images/janaki.jpg');">
-					<a class="h1 db" href="#">साँझमा झिलिमिली जानकी मन्दिर</a>
-				</article>
-				<article class="item br-2 df p-2" style="background:url('static/images/falful.jpg');">
-					<a class="h1 db" href="#">घर खर्च चलाउन फलफूल व्यापार</a>
-				</article>
+				{% for pf in photoFeatures %}	
+					<article class="item br-2 df p-2" style="background:url('{{ pf|news_image }}');">
+						<a class="h1 db" href="{% url 'newsDetail' pf.id %}">{{pf.news_title}}</a>
+					</article>
+				{% endfor %}				
 			</div>
 		</div>
 	</section>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/jag.gif' %}" alt="jag">
-	</a>
+	{% get_ads_by_position 'under-photo-feature' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">सूचना-प्रविधि</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/सूचना-प्रविधि">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="suchana dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/iphone.jpg' %}" alt="iphone">
-					</aside>
-					<a class="title db" href="#">प्रधानमन्त्रीको निर्देशनपछि एमडीएमएसको कार्यान्वयन स्थगित</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/child.jpg' %}" alt="child">
-					</aside>
-					<a class="title db" href="#">स्मार्टफोनले बच्चाको मानसिक स्वास्थ्यमा क्षति</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/mooo.jpg' %}" alt="mooo">
-					</aside>
-					<a class="title db" href="#">नेपालमा सुरु भयो एमडीएमएस,अब अनधिकृत मोबाइल नचल्ने</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/twi.webp' %}" alt="twi">
-					</aside>
-					<a class="title db" href="#">अब ट्वीटरमा अक्षर सीमा हटाइने</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/mob.webp' %}" alt="mob">
-					</aside>
-					<a class="title db" href="#">दर्ता नभएका मोबाइल आजदेखि नचल्ने</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/child.jpg' %}" alt="child">
-					</aside>
-					<a class="title db" href="#">स्मार्टफोनले बच्चाको मानसिक स्वास्थ्यमा क्षति</a>
-				</article>
+				{% for sp in suchanaPrabidhi %}
+					<article class="item">
+						<aside class="img-outer br-1">
+							<img src="{{ sp|news_image }}" alt="{{ sp.news_title }}">
+						</aside>
+						<a class="title db" href="{% url 'newsDetail' sp.id %}">{{sp.news_title}}</a>
+					</article>
+				{% endfor %}
+				
 			</div>
 		</div>
 		<div class="col_3">
 			<h2 class="block_title blu df">
-				<span class="pr-2 wh-bg">संसद</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<span class="pr-2 wh-bg">पर्यटन</span>
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/पर्यटन">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="right samsad dfc">
-				<a class="item df gap-1" href="#">
+				{% for pn in paryatonNews %}
+				<a class="item df gap-1" href="{% url 'newsDetail' pn.id %}">
 					<aside class="img-outer br-1">
-						<img src="{% static 'images/ram.jpeg' %}" alt="ram">
+						<img src="{{ pn|news_image }}" alt="{{ pn.news_title }}">
 					</aside>
-					<h5 class="title">भ्रष्टाचारविरुद्ध शून्य सहनशीलताको नीतिलाई थप कडाइ गर्ने</h5>
+					<h5 class="title">{{pn.news_title}}</h5>
 				</a>
-				<a class="item df gap-1" href="#">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/sam.jpg' %}" alt="sam">
-					</aside>
-					<h5 class="title">प्रतिनिधिसभा बैठक : बजेटमाथि उठेका प्रश्नको मन्त्रीहरूले जवाफ दिने</h5>
-				</a>
-
+				{% endfor %}
 			</div>
 		</div>
 	</div>
-
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/nic.gif' %}" alt="nic">
-	</a>
+	
+	{% get_ads_by_position 'under-suchana-prabidhi' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">संस्कृति-कला-साहित्य</span>
-				<a class="block_link pl-2 wh-bg df gap-1" href="#">सबै
+				<a class="block_link pl-2 wh-bg df gap-1" href="http://127.0.0.1:8000/संस्कृति-कला-साहित्य">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="left dg gap-2">
+				{% for kn in kalaNews %}
 				<article class="item">
 					<aside class="img-outer br-1">
-						<img src="{% static 'images/let.png' %}" alt="let">
+						<img src="{{ kn|news_image }}" alt="{{ kn.news_title }}">
 					</aside>
-					<a class="title db" href="#">डा.लामिछानेको एप्रिसिएटिभ ईन्क्वारीको अंग्रेजी गीत सार्वजानीक</a>
+					<a class="title db" href="{% url 'newsDetail' kn.id %}">{{kn.news_title}}</a>
 				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/rasmi.jpeg' %}" alt="rasmi">
-					</aside>
-					<a class="title db" href="#">सांगीतिक दुनियाँमा छाउँदै गायिका रश्मी राई</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/mod.jpeg' %}" alt="mod">
-					</aside>
-					<a class="title db" href="#">‘सधैँ यस्ता मीठा कुरा’ सार्वजनिक</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/musu.png' %}" alt="musu">
-					</aside>
-					<a class="title db" href="#">डा. आर सी लामिछानेको ‘मुसुमुसु हास्दै बोल्ने’ गीत सार्वजानीक</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/muna.jpg' %}" alt="muna">
-					</aside>
-					<a class="title db" href="#">मिस हेरिटेज ग्लोबलमा नेपालकी मुना</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/mod.jpeg' %}" alt="mod">
-					</aside>
-					<a class="title db" href="#">‘सधैँ यस्ता मीठा कुरा’ सार्वजनिक</a>
-				</article>
+				{% endfor %}
+				
 			</div>
 		</div>
 
@@ -551,201 +467,95 @@
 			<div class="p-2 br-2 light-bg">
 				<h2 class="block_title blu df">
 					<span class="pr-2 light-bg">पत्रपत्रिका</span>
-					<a class="block_link light-bg pl-2 df gap-1" href="#">सबै
+					<a class="block_link light-bg pl-2 df gap-1" href="http://127.0.0.1:8000/पत्रपत्रिका">सबै
 						<i class="cf cf-list-alt"></i>
 					</a>
 				</h2>
 				<div class="right patrika dfc">
-					<a class="item df gap-1" href="#">
-						<aside class="img-outer br-1">
-							<img src="{% static 'images/cong.jpg' %}" alt="cong">
-						</aside>
-						<h5 class="title">कांग्रेसमा नयाँ प्रयोग, शैली पुरानै</h5>
-					</a>
-					<a class="item df gap-1" href="#">
-						<aside class="img-outer br-1">
-							<img src="{% static 'images/jus.jpg' %}" alt="jus">
-						</aside>
-						<h5 class="title">‘न्याय पाउने आशा मर्‍यो’</h5>
-					</a>
-					<a class="item df gap-1" href="#">
-						<aside class="img-outer br-1">
-							<img src="{% static 'images/yuva.jpg' %}" alt="yuva">
-						</aside>
-						<h5 class="title">वैदेशिक रोजगारबाट फर्किनेलाई उद्यमी बनाउँदै स्थानीय तह</h5>
-					</a>
+					{% for ptk in patrikaNews %}
+						<a class="item df gap-1" href="{% url 'newsDetail' ptk.id %}">
+							<aside class="img-outer br-1">
+								<img src="{{ ptk|news_image }}" alt="{{ ptk.news_title }}">
+							</aside>
+							<h5 class="title">{{ptk.news_title}}</h5>
+						</a>
+					{% endfor %}				
 
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/maruti.gif' %}" alt="maruti">
-	</a>
+	{% get_ads_by_position 'under-kala' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<div class="wrapper mt-5 dg gap-3">
 		<div class="col_9">
 			<h2 class="block_title blu df">
 				<span class="pr-2 wh-bg">विविध</span>
-				<a class="block_link wh-bg pl-2 df gap-1" href="#">सबै
+				<a class="block_link wh-bg pl-2 df gap-1" href="http://127.0.0.1:8000/पत्रपत्रिका">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="vivid dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/kam.jpg' %}" alt="kam">
-					</aside>
-					<a class="title db" href="#">काँडा खोलामा पुल निर्माणले लियो गति, निर्धारित समय अगावै सक्ने लक्ष्य</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/sun.jpg' %}" alt="sun">
-					</aside>
-					<a class="title db" href="#">एक वर्षमा भित्रियो साढे ३ हजार किलो सुन</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/bida.jpg' %}" alt="bida">
-					</aside>
-					<a class="title db" href="#">कैलालीका चार स्थानीय तहले दिए कमैया मुक्ति दिवसको बिदा</a>
-				</article>
+				{% for vn in vividNews %}
+					<article class="item">
+						<aside class="img-outer br-1">
+							<img src="{{ vn|news_image }}" alt="{{ vn.news_title }}">
+						</aside>
+						<a class="title db" href="{% url 'newsDetail' vn.id %}">{{vn.news_title}}</a>
+					</article>
+				{% endfor %}
+				
 			</div>
 		</div>
 		<div class="col_3 dfc gap-2">
-			<a class="ad-wrap" href="#">
-				<img src="{% static 'images/tata.gif' %}" alt="tata">
-			</a>
-			<a class="ad-wrap" href="#">
-				<img src="{% static 'images/sales.gif' %}" alt="sales">
-			</a>
+			
+			{% get_ads_by_position 'under-vivid-right' as ads %}
+			{% for ad in ads %}
+				<a class="ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+					<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+				</a>
+			{% endfor %}
+
 		</div>
 	</div>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/scarpio.gif' %}" alt="scarpio">
-	</a>
+	{% get_ads_by_position 'under-vivid' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 	<section class="mt-5 py-5 blue-bg">
 		<div class="wrapper">
 			<h2 class="block_title center wh df">
 				<span class="pr-2 blue-bg">मनोरञ्जन</span>
-				<a class="block_link pl-2 blue-bg wh df gap-1" href="#">सबै
+				<a class="block_link pl-2 blue-bg wh df gap-1" href="http://127.0.0.1:8000/मनोरञ्जन">सबै
 					<i class="cf cf-list-alt"></i>
 				</a>
 			</h2>
 			<div class="kala dg gap-2">
-				<article class="item br-2 df p-2" style="background:url('static/images/miss.jpg');">
-					<a class="h3 db wh" href="#">आयोजकबाट यौन दुर्व्यवहार भएको भन्दै मिस युनिभर्स इण्डोनेसियाका प्रतिस्पर्धीले दिए उजुरी</a>
-				</article>
-				<article class="item br-2 df p-2" style="background:url('static/images/tory.jpg');">
-					<a class="h3 db wh" href="#">क्यानेडियन र्‍यापर टोरी लानेजलाई १० वर्षको जेल सजाय</a>
-				</article>
-				<article class="item br-2 df p-2" style="background:url('static/images/yas.jpg');">
-					<a class="h3 db wh" href="#">यश कुमारको ‘सुस्तरी सुस्तरी’मा सडकमा मकै पोलेर गुजारा गर्ने युवती र नगरप्रहरीको कथा</a>
-				</article>
+				{% for mrn in manorajnanNews %}
+					<article class="item br-2 df p-2" style="background:url('{{ mrn|news_image }}');">
+						<a class="h3 db wh" href="{% url 'newsDetail' mrn.id %}">{{mrn.news_title}}</a>
+					</article>
+				{% endfor %}
 
 			</div>
 		</div>
 	</section>
 
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/naree.gif' %}" alt="naree">
-	</a>
-
-	<div class="wrapper mt-5 dg gap-3">
-		<div class="col_4">
-			<h2 class="block_title blu df">
-				<span class="pr-2 wh-bg">कृषि</span>
-				<a class="block_link wh-bg pl-2 df gap-1" href="#">सबै
-					<i class="cf cf-list-alt"></i>
-				</a>
-			</h2>
-			<div class="onethird dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/sana.jpg' %}" alt="sana">
-					</aside>
-					<a class="title db" href="#">कृषि प्रवर्द्धन गर्न साना किसानले दियो हाते ट्रयाक्टर</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/dhan.jpg' %}" alt="dhan">
-					</aside>
-					<a class="title db" href="#">बर्दगोरियाले मनायो २० औँ राष्ट्रिय धान दिवस, कस्तो छ पालिकाको कृषि नीति?</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/maha.jpg' %}" alt="maha">
-					</aside>
-					<a class="title db" href="#">बजार पाएन मौरीले</a>
-				</article>
-
-			</div>
-		</div>
-		<div class="col_4">
-			<h2 class="block_title blu df">
-				<span class="pr-2 wh-bg">पर्यटन</span>
-				<a class="block_link wh-bg pl-2 df gap-1" href="#">सबै
-					<i class="cf cf-list-alt"></i>
-				</a>
-			</h2>
-			<div class="onethird dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/khap.jpg' %}" alt="khap">
-					</aside>
-					<a class="title db" href="#">खप्तड क्षेत्र विकास कोष स्थापना गर्ने प्रधानमन्त्रीको घोषणा</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/fes.jpg' %}" alt="fes">
-					</aside>
-					<a class="title db" href="#">फेवातालमा नेपाल-चीन फ्रेन्डसिप ड्रागन बोट रेस फेस्टिभल आजदेखि</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/para.jpg' %}" alt="para">
-					</aside>
-					<a class="title db" href="#">प्याराग्लाइडिङ उडान अनिश्चितकालका लागि बन्द</a>
-				</article>
-
-			</div>
-		</div>
-		<div class="col_4">
-			<h2 class="block_title blu df">
-				<span class="pr-2 wh-bg">खेलकूद</span>
-				<a class="block_link wh-bg pl-2 df gap-1" href="#">सबै
-					<i class="cf cf-list-alt"></i>
-				</a>
-			</h2>
-			<div class="onethird dg gap-2">
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/cri.jpg' %}" alt="cri">
-					</aside>
-					<a class="title db" href="#">आयरल्याण्डसँग पहिलो पटक ओडीआई खेल खेल्दै नेपाल</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/cri2.jpg' %}" alt="cri2">
-					</aside>
-					<a class="title db" href="#">एसीसी कपको उपाधि नेपाललाई, एसिया कपमा छनोट</a>
-				</article>
-				<article class="item">
-					<aside class="img-outer br-1">
-						<img src="{% static 'images/cri.jpg' %}" alt="cri">
-					</aside>
-					<a class="title db" href="#">आयरल्याण्डसँग पहिलो पटक ओडीआई खेल खेल्दै नेपाल</a>
-				</article>
-
-			</div>
-		</div>
-	</div>
-
-	<a class="wrapper mt-5 ad-wrap" href="#">
-		<img src="{% static 'images/maruti.gif' %}" alt="maruti">
-	</a>
+	{% get_ads_by_position 'under-manoranjan' as ads %}
+	{% for ad in ads %}
+		<a class="wrapper mt-5 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+			<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+		</a>
+	{% endfor %}
 
 {% endblock %}

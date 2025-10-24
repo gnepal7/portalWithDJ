@@ -1,7 +1,9 @@
 {% load static %}
 {% load mptt_tags %}
 {% load custom_filters %}
-{% static "images" as baseURL %}
+<!-- {% static "images" as baseURL %} -->
+{% static "images" as baseURL_images %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +23,7 @@
 	<meta name="twitter:title" content="News Portal">
 	<meta name="twitter:description" content="Latest news and updates from around the world.">
 	<meta name="twitter:image" content="{%static 'images/logo.png' %}">
-	<title>News Portal</title>
+	<title>{{ title|default:'News Portal' }}</title>
 
 	<!-- custom favicon -->
 	<link rel="icon" href="{% static 'images/fav.png' %}" type="image/png">
@@ -41,9 +43,20 @@
 
 	<header class="header wrapper py-2 dg gap-3">
 		<div class="logo_div col_3 dfc gap-1">
-			<a class="logo hide_on_mobile" href="{% url 'home' %}">
+
+			{% if logo and logo.image %}
+                <a class="logo hide_on_mobile" href="{% url 'home' %}">
+                    <img src="{{ logo.image.file.url }}" alt="{{ logo.title }}">
+                </a>
+            {% else %}
+                <a class="logo hide_on_mobile" href="{% url 'home' %}">
+                    <img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Default Logo">
+                </a>
+            {% endif %}
+
+			<!-- <a class="logo hide_on_mobile" href="{% url 'home' %}">
 				<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-			</a>
+			</a> -->
 			<time class="gr">{{ ""|current_nepali_date }}</time>
 		</div>
 				
@@ -59,9 +72,18 @@
 	<nav class="nav">
 		<div class="wrapper df">
 			<div class="nav_inner">
-				<a href="{% url 'home' %}" class="logo hide_on_desktop">
+				<!-- <a href="{% url 'home' %}" class="logo hide_on_desktop">
 					<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-				</a>
+				</a> -->
+
+				<a href="{% url 'home' %}" class="logo hide_on_desktop">
+                    {% if logo and logo.image %}
+                        <img src="{{ logo.image.file.url }}" alt="{{ logo.title }}">
+                    {% else %}
+                        <img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Default Logo">
+                    {% endif %}
+                </a>
+
 				<button class="nav_toggler">
 					<i class="cf cf-bars toggler"></i>
 				</button>

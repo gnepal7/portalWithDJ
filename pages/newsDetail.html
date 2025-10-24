@@ -7,11 +7,19 @@
 	<div class="wrapper mt-5">
 		<div class="detail dg gap-3">
 			<div class="col_9">
-				<h1 class="h1">{{ news.news_title }}</h1>
-				<h3>{{ news.news_subTitle }}</h3>
-				<a class="img-wrap mt-3" href="#">
-					<img src="{% static 'images/shi.gif' %}" alt="shi">
-				</a>
+				<h1 class="h1">{{ news.news_title }}</h1>				
+				<h3>
+					{% if news.news_subTitle %}
+						{{ news.news_subTitle }}
+					{% endif %}
+				</h3>
+
+				{% get_ads_by_position 'detail-top' as ads %}
+				{% for ad in ads %}
+					<a class="mt-2 ad-wrap" href="{{ ad.link|default:'#' }}" target="_blank">
+						<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+					</a>
+				{% endfor %}
 			
 				<aside class="pub-date my-3 py-1">
 					<figure class="df gap-2">
@@ -44,17 +52,28 @@
 					<img src="{% static 'images/default.jpg' %}" alt="{{ news.news_title }}">
 				{% endif %}
 				<div class="detail_text">{{ news.news_desc|safe }}</div>
-				<a class="ad-wrap mt-3" href="#">
-					<img src="{% static 'images/ncell.png' %}" alt="ncell">
-				</a>
+
+				{% get_ads_by_position 'detail-bottom1' as ads %}
+				{% for ad in ads %}
+					<a class="ad-wrap mt-3" href="{{ ad.link|default:'#' }}" target="_blank">
+						<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+					</a>
+				{% endfor %}				
 
 				<div class="comment-sec mt-3">
 					<h3>Places for Comment from facebook login</h3>
 				</div>
 
-				<a class="ad-wrap mt-3" href="#">
+				<!-- <a class="ad-wrap mt-3" href="#">
 					<img src="{% static 'images/baso.gif' %}" alt="baso">
-				</a>
+				</a> -->
+
+				{% get_ads_by_position 'detail-bottom2' as ads %}
+				{% for ad in ads %}
+					<a class="ad-wrap mt-3" href="{{ ad.link|default:'#' }}" target="_blank">
+						<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
+					</a>
+				{% endfor %}
 
 				<div class="mt-3">
 					<h2 class="block_title center blu df">

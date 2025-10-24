@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from mptt.admin import DraggableMPTTAdmin
-from .models import News, Category, Author, Advertisement
+from .models import News, Category, Author, Advertisement, Page, Logo
 from cabinet.fields import CabinetForeignKey
 
 @admin.register(Category)
@@ -41,4 +41,22 @@ class AdvertisementAdmin(admin.ModelAdmin):
         CabinetForeignKey: {'required': False},
         models.CharField: {'required': False},
         models.URLField: {'required': False},
+    }
+
+@admin.register(Page)
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title', 'content')
+    raw_id_fields = ['image']
+    formfield_overrides = {
+        CabinetForeignKey: {'required': False},
+    }
+
+@admin.register(Logo)
+class LogoAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title',)
+    raw_id_fields = ['image']
+    formfield_overrides = {
+        CabinetForeignKey: {'required': False},
     }
