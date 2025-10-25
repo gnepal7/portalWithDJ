@@ -135,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')  
 CABINET_MEDIA_PATH = 'cabinet/'
-CABINET_MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media', 
+CABINET_MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media', CABINET_MEDIA_PATH)
 CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
 
 TIME_ZONE = 'Asia/Kathmandu'
