@@ -14,7 +14,9 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -126,16 +128,17 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = BASE_DIR /"media"
-MEDIA_URL = "/media/"
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR /"media"
+# CABINET_MEDIA_PATH = 'cabinet/'  
+# CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  
+# CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  
 
-# CABINET_MEDIA_PATH = 'news/'
-# CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH
-# CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
-
-CABINET_MEDIA_PATH = 'cabinet/'  # Update to match the base cabinet path
-CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  # Points to media/cabinet/
-CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  # Adjust URL
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+CABINET_MEDIA_PATH = 'cabinet/'
+CABINET_MEDIA_ROOT = os.path.join(BASE_DIR, 'media', CABINET_MEDIA_PATH) 
+CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
 
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True
