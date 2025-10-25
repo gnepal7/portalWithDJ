@@ -30,7 +30,6 @@ SECRET_KEY = 'django-insecure-lka7%r^a65anl_s#h*kkecjx$e)@^0($n8r&9s46#ge!b_w=3)
 DEBUG = False
 ALLOWED_HOSTS = ['portalwithdj.onrender.com', 'localhost', '127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -87,7 +86,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -111,34 +109,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS =[BASE_DIR, 'static']
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-STATICFILES_DIRS =[
-  BASE_DIR, 'static'
-]
-
 MEDIA_ROOT = BASE_DIR /"media"
 MEDIA_URL = "/media/"
-
 
 # CABINET_MEDIA_PATH = 'news/'
 # CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH
@@ -148,7 +137,6 @@ CABINET_MEDIA_PATH = 'cabinet/'  # Update to match the base cabinet path
 CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  # Points to media/cabinet/
 CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  # Adjust URL
 
-
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True
 
@@ -157,4 +145,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins': 'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
     'toolbar': 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image media table | code preview',
 }
-
