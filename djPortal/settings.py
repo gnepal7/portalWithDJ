@@ -15,9 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
-# BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -29,7 +27,7 @@ SECRET_KEY = 'django-insecure-lka7%r^a65anl_s#h*kkecjx$e)@^0($n8r&9s46#ge!b_w=3)
 # DEBUG = True
 # ALLOWED_HOSTS = []
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['portalwithdj.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
@@ -121,7 +119,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -135,9 +133,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')  
 CABINET_MEDIA_PATH = 'cabinet/'
-CABINET_MEDIA_ROOT = os.path.join(BASE_DIR, 'media', CABINET_MEDIA_PATH) 
+CABINET_MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media', 
 CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
 
 TIME_ZONE = 'Asia/Kathmandu'
