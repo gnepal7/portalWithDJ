@@ -27,23 +27,30 @@
 
 	<!-- custom favicon -->
 	<link rel="icon" href="{% static 'images/fav.png' %}" type="image/png">
-
-	<!-- custom fonts -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/font-styles.css' %}">
-	<!-- owl-carousel -->
+	<link rel="icon" href="{% static 'portalWithDJ/static/images/fav.png' %}" type="image/png">
+	<!-- css for localhost -->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/font-styles.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
-	<!-- custom -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/front.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/front.css' %}"> -->
+	<!-- css for live server -->
+	<link rel="stylesheet" type="text/css" href="{% static 'portalWithDJ/static/css/font-styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'portalWithDJ/static/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'portalWithDJ/static/css/front.css' %}">
+	
 </head>
 
 <body>
-	<script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
+	<!-- js for localost -->
+	<!-- <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
 	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script> -->
+	<!-- js for live server -->
+	<script src="{% static 'portalWithDJ/static/js/jquery-3.5.0.min.js' %}"></script>
+	<script src="{% static 'portalWithDJ/static/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'portalWithDJ/static/js/main.js' %}"></script>
 
 	<header class="header wrapper py-2 dg gap-3">
 		<div class="logo_div col_3 dfc gap-1">
-
 			{% if logo and logo.image %}
                 <a class="logo hide_on_mobile" href="{% url 'home' %}">
                     <img src="{{ logo.image.file.url }}" alt="{{ logo.title }}">
@@ -53,29 +60,19 @@
                     <img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Default Logo">
                 </a>
             {% endif %}
-
-			<!-- <a class="logo hide_on_mobile" href="{% url 'home' %}">
-				<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-			</a> -->
 			<time class="gr">{{ ""|current_nepali_date }}</time>
-		</div>
-				
+		</div>				
 		{% get_ads_by_position 'header-right' as ads %}
 		{% for ad in ads %}
 			<a class="ad-wrap col_9" href="{{ ad.link|default:'#' }}" target="_blank">
 				<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
 			</a>
 		{% endfor %}
-
 	</header>
 
 	<nav class="nav">
 		<div class="wrapper df">
 			<div class="nav_inner">
-				<!-- <a href="{% url 'home' %}" class="logo hide_on_desktop">
-					<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-				</a> -->
-
 				<a href="{% url 'home' %}" class="logo hide_on_desktop">
                     {% if logo and logo.image %}
                         <img src="{{ logo.image.file.url }}" alt="{{ logo.title }}">
@@ -83,7 +80,6 @@
                         <img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Default Logo">
                     {% endif %}
                 </a>
-
 				<button class="nav_toggler">
 					<i class="cf cf-bars toggler"></i>
 				</button>
@@ -120,7 +116,6 @@
 					{% else %}
 					<li>No categories available.</li>
 					{% endif %}
-
 				</ul>
 			</div>
 		</div>
