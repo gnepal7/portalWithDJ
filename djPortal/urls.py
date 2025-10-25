@@ -22,15 +22,6 @@ from django.conf.urls.static import static
 
 from djPortal import views
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('', views.landingPage, name='home' ),
-#     path('<str:category>/', views.newsListing, name='category_page'),
-#     path('newsDetail/<int:id>', views.newsDetail, name='newsDetail'),
-#     path('author/<int:pk>/', views.authorDetail, name='authorDetail'),
-#     path('page/<str:page_title>/', views.pageDetail, name='page_detail')
-# ] 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.landingPage, name='home' ),
@@ -38,13 +29,11 @@ urlpatterns = [
     path('newsDetail/<int:id>', views.newsDetail, name='newsDetail'),
     path('author/<int:pk>/', views.authorDetail, name='authorDetail'),
     path('page/<str:page_title>/', views.pageDetail, name='page_detail')
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
+] 
 urlpatterns += static(settings.CABINET_MEDIA_URL, document_root=settings.CABINET_MEDIA_ROOT)
 
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  
