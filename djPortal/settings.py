@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-lka7%r^a65anl_s#h*kkecjx$e)@^0($n8r&9s46#ge!b_w=3)
 # DEBUG = True
 # ALLOWED_HOSTS = []
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['portalwithdj.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
