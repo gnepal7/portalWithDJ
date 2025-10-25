@@ -58,10 +58,25 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djPortal.urls'
 
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [BASE_DIR, 'pages'],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'pages'],
+        'DIRS': [os.path.join(BASE_DIR.parent, 'pages')],  # Points to repo root pages/
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,10 +94,17 @@ WSGI_APPLICATION = 'djPortal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR.parent, 'db.sqlite3'),  # Points to repo root db.sqlite3
     }
 }
 
@@ -118,25 +140,25 @@ USE_TZ = True
 # STATICFILES_DIRS =[BASE_DIR, 'static']
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR.parent, 'staticfiles') 
+STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR /"media"
-CABINET_MEDIA_PATH = 'cabinet/'  
-CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  
-CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR /"media"
+# CABINET_MEDIA_PATH = 'cabinet/'  
+# CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  
+# CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')  
-# CABINET_MEDIA_PATH = 'cabinet/'
-# CABINET_MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media', CABINET_MEDIA_PATH)
-# CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')  
+CABINET_MEDIA_PATH = 'cabinet/'
+CABINET_MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media', CABINET_MEDIA_PATH)  
+CABINET_MEDIA_URL = '/media/cabinet/'
 
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True
