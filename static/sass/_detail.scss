@@ -16,6 +16,13 @@
 			}
 		}
 	}
+	&_text{
+		& p{
+			& img{
+				margin-bottom:1rem;
+			}
+		}
+	}
 	& p{
 		&:not(:last-of-type){
 			margin-bottom:1.3rem;
@@ -29,6 +36,14 @@
 		}
 		@include max(767px){
 			grid-column:span 12;
+		}
+	}
+}
+.author{
+	&_outer{
+		min-height:50vh;
+		& img{
+			
 		}
 	}
 }

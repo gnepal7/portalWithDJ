@@ -30,11 +30,10 @@ urlpatterns = [
     path('author/<int:pk>/', views.authorDetail, name='authorDetail'),
     path('page/<str:page_title>/', views.pageDetail, name='page_detail')
 ] 
-
 urlpatterns += static(settings.CABINET_MEDIA_URL, document_root=settings.CABINET_MEDIA_ROOT)
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  

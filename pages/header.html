@@ -1,9 +1,7 @@
 {% load static %}
 {% load mptt_tags %}
 {% load custom_filters %}
-<!-- {% static "images" as baseURL %} -->
 {% static "images" as baseURL_images %}
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,26 +24,20 @@
 	<title>{{ title|default:'News Portal' }}</title>
 
 	<!-- custom favicon -->
-	<link rel="icon" href="{% static 'images/fav.png' %}" type="image/png">
+	<link rel="icon" href="{% static 'images/fav.png' %}" type="image/png">	
 
-	<!-- custom fonts -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/font-styles.css' %}">
-	<!-- owl-carousel -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
-	<!-- custom -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/front.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-styles.css' %}"> 
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"> 
+	<link rel="stylesheet" href="{% static 'css/front.css' %}">
 
-	
 </head>
-
 <body>
-	<script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
-	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/jquery-3.5.0.min.js' %}"></script> 
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script> 
+	<script src="{% static 'js/main.js' %}"></script> 
 
 	<header class="header wrapper py-2 dg gap-3">
 		<div class="logo_div col_3 dfc gap-1">
-
 			{% if logo and logo.image %}
                 <a class="logo hide_on_mobile" href="{% url 'home' %}">
                     <img src="{{ logo.image.file.url }}" alt="{{ logo.title }}">
@@ -57,15 +49,13 @@
             {% endif %}
 
 			<time class="gr">{{ ""|current_nepali_date }}</time>
-		</div>
-				
+		</div>				
 		{% get_ads_by_position 'header-right' as ads %}
 		{% for ad in ads %}
 			<a class="ad-wrap col_9" href="{{ ad.link|default:'#' }}" target="_blank">
 				<img src="{{ ad|ad_image }}" alt="{{ ad.name|default:'Advertisement' }}">
 			</a>
 		{% endfor %}
-
 	</header>
 
 	<nav class="nav">
@@ -79,7 +69,6 @@
                         <img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo" alt="Default Logo">
                     {% endif %}
                 </a>
-
 				<button class="nav_toggler">
 					<i class="cf cf-bars toggler"></i>
 				</button>
@@ -116,7 +105,6 @@
 					{% else %}
 					<li>No categories available.</li>
 					{% endif %}
-
 				</ul>
 			</div>
 		</div>

@@ -6,17 +6,18 @@
 
 {% block content %}
 <div class="wrapper author_outer mt-5 dg gap-3">
-    <div class="colg_3 dfc gap-2">
-        <h2 class="block_title">
-            <span class="pr-2 wh-bg">{{ author.name|default:"पोर्टल रिपोर्टर" }}</span>
-        </h2>
+    <div class="col_3 dfc">
         {% with author_display=author.get_author_display %}
             <img src="{{ author_display.image }}" alt="{{ author_display.name|default:'पोर्टल रिपोर्टर' }}">
         {% endwith %}
+        <h2 class="block_title mt-2">
+            <span class="pr-2 wh-bg">{{ author.name|default:"पोर्टल रिपोर्टर" }}</span>
+        </h2>
+        
     </div>
     
-    <div class="col-9 author_wrap">
-        <p>{{ author.short_description|default:"No description available." }}</p>        
+    <div class="col_9 author_wrap">
+        {{ author.short_description|default:"No description available."|safe}}        
     </div>
 </div>
 {% endblock %}

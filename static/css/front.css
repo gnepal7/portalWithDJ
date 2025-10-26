@@ -2483,6 +2483,9 @@ figure > * {
     flex-direction: column;
   }
 }
+.detail_text p img {
+  margin-bottom: 1rem;
+}
 .detail p:not(:last-of-type) {
   margin-bottom: 1.3rem;
 }
@@ -2496,6 +2499,10 @@ figure > * {
   .related .item {
     grid-column: span 12;
   }
+}
+
+.author_outer {
+  min-height: 50vh;
 }
 
 @media only all and (min-width: 768px) {
