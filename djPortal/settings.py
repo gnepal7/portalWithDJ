@@ -54,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # it is for supporting on render
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'djPortal.urls'
@@ -117,9 +120,16 @@ USE_TZ = True
 # STATICFILES_DIRS =[BASE_DIR, 'static']
 
 # for live server
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR.parent, 'staticfiles')
+# STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')]
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR.parent, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# optional for rendering
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -132,10 +142,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # for live server
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')  
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CABINET_MEDIA_PATH = 'cabinet/'
-CABINET_MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media', CABINET_MEDIA_PATH)  
+CABINET_MEDIA_ROOT = os.path.join(MEDIA_ROOT, CABINET_MEDIA_PATH)
 CABINET_MEDIA_URL = '/media/cabinet/'
+
 
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True

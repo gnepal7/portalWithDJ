@@ -1,0 +1,49 @@
+.detail{
+	font-size:1.3rem;
+	text-align: justify;
+	& .pub-date{
+		border-top:1px solid rgba($ass, .3);
+		border-bottom:1px solid rgba($ass, .3);
+		font-size:1rem;
+		padding: 1rem 0;
+		justify-content: space-between;
+		@include max(767px){
+			flex-direction: column;
+		}
+		& figure{
+			@include max(480px){
+				flex-direction: column;
+			}
+		}
+	}
+	&_text{
+		& p{
+			& img{
+				margin-bottom:1rem;
+			}
+		}
+	}
+	& p{
+		&:not(:last-of-type){
+			margin-bottom:1.3rem;
+		}
+	}
+}
+.related{
+	& .item{
+		@include min(768px){
+			grid-column:span 4;
+		}
+		@include max(767px){
+			grid-column:span 12;
+		}
+	}
+}
+.author{
+	&_outer{
+		min-height:50vh;
+		& img{
+			
+		}
+	}
+}
