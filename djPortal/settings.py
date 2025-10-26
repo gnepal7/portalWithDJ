@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-lka7%r^a65anl_s#h*kkecjx$e)@^0($n8r&9s46#ge!b_w=3)
 # ALLOWED_HOSTS = []
 
 # hosting setting for live server
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['portalwithdj.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
@@ -121,18 +121,17 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR /"media"
-CABINET_MEDIA_PATH = 'cabinet/'  
-CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  
-CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR /"media"
+# CABINET_MEDIA_PATH = 'cabinet/'  
+# CABINET_MEDIA_ROOT = BASE_DIR / 'media' / CABINET_MEDIA_PATH  
+# CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH  
 
-# for live server
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')
-# CABINET_MEDIA_PATH = 'cabinet/'
-# CABINET_MEDIA_ROOT = os.path.join(MEDIA_ROOT, CABINET_MEDIA_PATH)
-# CABINET_MEDIA_URL = '/media/cabinet/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CABINET_MEDIA_PATH = 'cabinet/'
+CABINET_MEDIA_ROOT = os.path.join(MEDIA_ROOT, CABINET_MEDIA_PATH)
+CABINET_MEDIA_URL = '/media/cabinet/'
 
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True

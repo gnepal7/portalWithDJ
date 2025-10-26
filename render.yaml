@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: djPortal
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn djPortal.wsgi:application"
+    staticPublishPath: ./staticfiles
+    routes:
+      - type: static
+        name: static
+        path: /static/*
+        destination: staticfiles/
+      - type: static
+        name: media
+        path: /media/*
+        destination: media/
+
+
