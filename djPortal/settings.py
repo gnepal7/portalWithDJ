@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-lka7%r^a65anl_s#h*kkecjx$e)@^0($n8r&9s46#ge!b_w=3)
 # ALLOWED_HOSTS = []
 
 # hosting setting for live server
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['portalwithdj.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
@@ -56,7 +56,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # it is for supporting on render
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
 ]
 
 ROOT_URLCONF = 'djPortal.urls'
@@ -106,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -115,22 +113,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATICFILES_DIRS =[BASE_DIR, 'static']
-
-# for live server
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR.parent, 'staticfiles')
-# STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')]
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # optional for rendering
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -146,7 +133,6 @@ CABINET_MEDIA_URL = '/media/' + CABINET_MEDIA_PATH
 # CABINET_MEDIA_PATH = 'cabinet/'
 # CABINET_MEDIA_ROOT = os.path.join(MEDIA_ROOT, CABINET_MEDIA_PATH)
 # CABINET_MEDIA_URL = '/media/cabinet/'
-
 
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True
