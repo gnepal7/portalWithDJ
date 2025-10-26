@@ -34,6 +34,8 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
 	<!-- custom -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/front.css' %}">
+
+	
 </head>
 
 <body>
@@ -54,9 +56,6 @@
                 </a>
             {% endif %}
 
-			<!-- <a class="logo hide_on_mobile" href="{% url 'home' %}">
-				<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-			</a> -->
 			<time class="gr">{{ ""|current_nepali_date }}</time>
 		</div>
 				
@@ -72,9 +71,6 @@
 	<nav class="nav">
 		<div class="wrapper df">
 			<div class="nav_inner">
-				<!-- <a href="{% url 'home' %}" class="logo hide_on_desktop">
-					<img src="https://placehold.jp/ec131e/ffffff/290x90.png?text=Logo">
-				</a> -->
 
 				<a href="{% url 'home' %}" class="logo hide_on_desktop">
                     {% if logo and logo.image %}
