@@ -73,7 +73,8 @@ def newsListing(request, category):
 def newsDetail(request, id):
     news = get_object_or_404(News, id=id)
     categories = get_cached_trees(Category.objects.exclude(name__in=['flashNews', 'mainNews', 'featured', 'vivid']))
-    related_news = News.objects.filter(categories__in=news.categories.all()).exclude(id=news.id).order_by('-published_date')[1:7]
+    # related_news = News.objects.filter(categories__in=news.categories.all()).exclude(id=news.id).order_by('-published_date')[1:7]
+    related_news = News.objects.filter(categories__in=news.categories.all()).exclude(id=news.id).order_by('-published_date').distinct()[1:7]
     popular_news = News.objects.all().order_by('-published_date')[:7] 
     logo = Logo.objects.first()
     return render(request, 'newsDetail.html', {
