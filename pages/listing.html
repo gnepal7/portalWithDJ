@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="mt-3 paginate col_12 df gap-1">
-        <!-- {% if page_obj.has_previous %}
+        {% if page_obj.has_previous %}
             <a class="prev page-numbers" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
         {% else %}
             <a class="prev page-numbers disabled" href="#">&lt;</a>
@@ -68,11 +68,11 @@
             <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}">&gt;</a>
         {% else %}
             <a class="next page-numbers disabled" href="#">&gt;</a>
-        {% endif %} -->
+        {% endif %}
 
         
 
-        {% if page_obj.has_previous %}
+        <!-- {% if page_obj.has_previous %}
             <a class="prev page-numbers" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
         {% endif %}
     
@@ -98,7 +98,7 @@
     
         {% if page_obj.has_next %}
             <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}">&gt;</a>
-        {% endif %}
+        {% endif %} -->
         
     </div>
 </div>
