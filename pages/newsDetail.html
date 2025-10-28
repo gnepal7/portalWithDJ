@@ -38,7 +38,8 @@
 						{% endif %}
 						<figcaption class="df gap-1">
 							<i class="cf cf-clock"></i>
-							<span class="gr">{{ news.published_date|localtime|nepali_date }}</span>
+							<!-- <span class="gr">{{ news.published_date|localtime|nepali_date }}</span> -->
+							<span class="gr">{{ news.published_date|nepali_date }}</span>
 						</figcaption>
 					</figure>
 				</aside>
@@ -63,10 +64,6 @@
 				<div class="comment-sec mt-3">
 					<h3>Places for Comment from facebook login</h3>
 				</div>
-
-				<!-- <a class="ad-wrap mt-3" href="#">
-					<img src="{% static 'images/baso.gif' %}" alt="baso">
-				</a> -->
 
 				{% get_ads_by_position 'detail-bottom2' as ads %}
 				{% for ad in ads %}

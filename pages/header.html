@@ -48,7 +48,7 @@
                 </a>
             {% endif %}
 
-			<time class="gr">{{ ""|current_nepali_date }}</time>
+			<time class="gr">{{ ''|nepali_date:True }} </time>
 		</div>				
 		{% get_ads_by_position 'header-right' as ads %}
 		{% for ad in ads %}
