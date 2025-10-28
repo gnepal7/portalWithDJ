@@ -56,17 +56,8 @@ def newsListing(request, category):
     categories = get_cached_trees(Category.objects.exclude(name__in=['flashNews', 'mainNews', 'featured', 'vivid']))
     category = get_object_or_404(Category, name=category)
 
-    all_news_qs = News.objects.filter(categories=category).order_by('-published_date')
-    first_news = all_news_qs.first()
-
-    # news_list = News.objects.filter(categories=category).order_by('-published_date')[:1]  
-    news_list = [first_news] if first_news else []           
-    
-    # paginated_news = News.objects.filter(categories=category).order_by('-published_date')
-    if first_news:
-        paginated_news = all_news_qs.exclude(pk=first_news.pk)
-    else:
-        paginated_news = all_news_qs
+    news_list = News.objects.filter(categories=category).order_by('-published_date')
+    paginated_news = news_list
     
     paginator = Paginator(paginated_news, 10)  
     page_number = request.GET.get('page')
