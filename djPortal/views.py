@@ -55,8 +55,19 @@ def landingPage(request):
 def newsListing(request, category):
     categories = get_cached_trees(Category.objects.exclude(name__in=['flashNews', 'mainNews', 'featured', 'vivid']))
     category = get_object_or_404(Category, name=category)
-    news_list = News.objects.filter(categories=category).order_by('-published_date')[:1]  # Limit to 1 banner item
-    paginated_news = News.objects.filter(categories=category).order_by('-published_date')
+
+    all_news_qs = News.objects.filter(categories=category).order_by('-published_date')
+    first_news = all_news_qs.first()
+
+    # news_list = News.objects.filter(categories=category).order_by('-published_date')[:1]  
+    news_list = [first_news] if first_news else []           
+    
+    # paginated_news = News.objects.filter(categories=category).order_by('-published_date')
+    if first_news:
+        paginated_news = all_news_qs.exclude(pk=first_news.pk)
+    else:
+        paginated_news = all_news_qs
+    
     paginator = Paginator(paginated_news, 10)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -73,7 +84,6 @@ def newsListing(request, category):
 def newsDetail(request, id):
     news = get_object_or_404(News, id=id)
     categories = get_cached_trees(Category.objects.exclude(name__in=['flashNews', 'mainNews', 'featured', 'vivid']))
-    # related_news = News.objects.filter(categories__in=news.categories.all()).exclude(id=news.id).order_by('-published_date')[1:7]
     related_news = News.objects.filter(categories__in=news.categories.all()).exclude(id=news.id).order_by('-published_date').distinct()[1:7]
     popular_news = News.objects.all().order_by('-published_date')[:7] 
     logo = Logo.objects.first()
