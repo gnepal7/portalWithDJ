@@ -8,8 +8,8 @@
         <span class="pr-2 wh-bg">{{ category.name }}</span>
     </h2>
     <div class="listing">
-        <!-- {% for news in news_list %} -->
-        {% for news in page_obj.object_list|slice:":1" %}
+        {% for news in news_list %}
+        <!-- {% for news in page_obj.object_list|slice:":1" %} -->
 
             <div class="banner mt-2 dfc gap-2 pb-3">
                 <aside class="img-outer br-2">
@@ -102,5 +102,4 @@
         
     </div>
 </div>
-{% endfor %}
 {% endblock %}
